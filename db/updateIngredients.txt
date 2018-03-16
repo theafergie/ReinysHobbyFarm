@@ -1,0 +1,142 @@
+UPDATE product
+SET ingredients = 'Honeysuckles, Water, Sugar, Lemon Juice, Pectin'
+WHERE productId = 9;
+UPDATE product
+SET ingredients = 'Honeysuckles, Strawberries, Water, Sugar, Lemon Juice, Pectin'
+WHERE productId = 10;
+
+UPDATE product
+SET ingredients = 'Daylilies, Water, Sugar, Lemon Juice, Pectin'
+WHERE productId = 6;
+
+
+UPDATE product
+SET ingredients = 'Blueberries, Water, Sugar, Pectin'
+WHERE productId = 5;
+
+
+UPDATE product
+SET ingredients = 'American Beautyberries, Water, Sugar, Lemon Juice, Pectin, Butter'
+WHERE productId = 1;
+
+
+UPDATE product
+SET ingredients = 'Jalapeños, Cider Vinegar, Sugar, Pectin'
+WHERE productId = 11;
+-------------------------------------------------------------------------------------------------
+
+UPDATE product
+SET ingredients = 'Peaches, Jalapeños, Cider Vinegar, Sugar, Pectin'
+WHERE productId = 12;
+
+UPDATE product
+SET ingredients = 'Muscadines, Sugar, Water, Pectin'
+WHERE productId = 17;
+
+UPDATE product
+SET ingredients = 'Grapes, Water, Sugar,  Pectin, Butter'
+WHERE productId = 8;
+
+UPDATE product
+SET ingredients = 'Watermelon, Sugar, Lemon Juice, Pectin'
+WHERE productId = 29;
+
+UPDATE product
+SET ingredients = 'Fresh Mint, Sugar, Water, Lemon Juice, Pectin'
+WHERE productId = 14;
+-------------------------------------------------------------------------------------------------
+
+UPDATE product
+SET ingredients = 'Blackberries, Ruby Port Wine, Sugar, Pectin, Ground Cloves'
+WHERE productId = 3;
+
+
+UPDATE product
+SET ingredients = 'Blackberries, Sugar, Pectin, Butter'
+WHERE productId = 4;
+
+
+UPDATE product
+SET ingredients = 'Muscadines, Sugar, Pectin, Butter'
+WHERE productId = 16;
+
+
+UPDATE product
+SET ingredients = 'Strawberries, Sugar, Pectin, Butter'
+WHERE productId = 25;
+
+
+UPDATE product
+SET ingredients = 'Strawberries, Ruby Port Wine, Sugar, Pectin, Lemon Zest, Nutmeg'
+WHERE productId = 26;
+
+UPDATE product
+SET ingredients = 'Tomatoes, Fresh Basil, Sugar, Lemon Juice, Pectin'
+WHERE productId = 28;
+
+
+UPDATE product
+SET ingredients = 'Strawberries, Rhubarb, Sugar, Lemon Juice, Pectin, Butter'
+WHERE productId = 27;
+
+UPDATE product
+SET ingredients = 'Apples, Apple Cider, Sugar, Lemon Juice, Cinnamon, Allspice, Cloves'
+WHERE productId = 2;
+
+
+UPDATE product
+SET ingredients = 'Pears, Apple Cider, Sugar, Lemon Juice, Cinnamon, Allspice, Cloves'
+WHERE productId = 21;
+-------------------------------------------------------------------------------------------------
+
+
+UPDATE product
+SET ingredients = 'Blackberries, Ruby Port Wine, Sugar, Pectin, Ground Cloves'
+WHERE productId = 3;
+
+
+UPDATE product
+SET ingredients = 'Blackberries, Sugar, Pectin, Butter'
+WHERE productId = 4;
+
+
+UPDATE product
+SET ingredients = 'Muscadines, Sugar, Pectin, Butter'
+WHERE productId = 16;
+
+
+UPDATE product
+SET ingredients = 'Strawberries, Sugar, Pectin, Butter'
+WHERE productId = 25;
+
+
+UPDATE product
+SET ingredients = 'Strawberries, Ruby Port Wine, Sugar, Pectin, Lemon Zest, Nutmeg'
+WHERE productId = 26;
+
+UPDATE product
+SET ingredients = 'Tomatoes, Fresh Basil, Sugar, Lemon Juice, Pectin'
+WHERE productId = 28;
+
+
+UPDATE product
+SET ingredients = 'Strawberries, Rhubarb, Sugar, Lemon Juice, Pectin, Butter'
+WHERE productId = 27;
+
+UPDATE product
+SET ingredients = 'Apples, Apple Cider, Sugar, Lemon Juice, Cinnamon, Allspice, Cloves'
+WHERE productId = 2;
+
+
+UPDATE product
+SET ingredients = 'Pears, Apple Cider, Sugar, Lemon Juice, Cinnamon, Allspice, Cloves'
+WHERE productId = 21;
+-------------------------------------------------------------------------------------------------
+
+UPDATE product
+SET ingredients = 'Scuppernongs (Bronze Muscadines), Sugar, Pectin, Butter'
+WHERE productId = 23;
+
+UPDATE product
+SET ingredients = 'Scuppernongs (Bronze Muscadines), Sugar, Water, Pectin'
+WHERE productId = 24;
