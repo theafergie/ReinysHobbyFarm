@@ -1,0 +1,3 @@
+﻿INSERT INTO category (categoryId, categoryName) VALUES(1, 'Jam');
+INSERT INTO category (categoryId, categoryName) VALUES(2, 'Jelly');
+INSERT INTO category (categoryId, categoryName) VALUES(3, 'Butter');
