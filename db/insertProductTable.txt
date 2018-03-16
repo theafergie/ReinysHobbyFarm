@@ -1,0 +1,83 @@
+﻿INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(1, 'American Beauty Jelly', '8 oz', 5.00, 2, 0, 2, 50, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(2, 'Apple Butter', '8 oz', 7.00, 3, 0, 0, 50, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(3, 'Blackberry Port Jam', '8 oz', 6.00, 1, 0, 6, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(4, 'Blackberry Jam, Seedless', '8 oz', 6.00, 1, 0, 0, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(5, 'Blueberry Jelly', '8 oz', 6.00, 2, 0, 6, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(6, 'Daylily Jelly', '8 oz', 5.00, 2, 0, 5, 50, 1)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(7, 'Fig Jam', '4 oz', 4.00, 1, 0, 6, 10, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(8, 'Grapy Jelly', '8 oz', 5.00, 2, 0, 0, 0, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(9, 'Honeysuckle Jelly', '8 oz', 5.00, 2, 0, 6, 50, 1)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(10, 'Honeysuckle Strawberry Jelly', '8 oz', 5.00, 2, 0, 0, 150, 1)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(11, 'Jalapeno Jelly', '8 oz', 6.00, 2, 0, 6, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(12, 'Jalapeno Peach Jelly', '8 oz', 6.00, 2, 0, 6, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(13, 'Lavendar Lemon Jelly', '8 oz', 6.00, 2, 0, 0, 20, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(14, 'Mint Jelly', '8 oz', 5.00, 2, 0, 0, 25, 1)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(15, 'Mixed Berry Jam', '8 oz', 6.00, 1, 0, 0, 0, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(16, 'Muscadine Jam, Hully', '8 oz', 6.00, 1, 0, 0, 30, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(17, 'Muscadine Jelly', '8 oz', 6.00, 2, 0, 3, 0, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(18, 'Nectarine Jam', '8 oz', 6.00, 1, 0, 6, 25, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(19, 'Peach Jam', '8 oz', 6.00, 1, 0, 6, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(20, 'Peach Honey Butter', '8 oz', 6.00, 3, 0, 0, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(21, 'Pear Butter', '8 oz', 6.00, 3, 0, 0, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(22, 'Purple Hull Jelly', '8 oz', 5.00, 2, 0, 0, 50, 2)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(23, 'Scuppernong Jam, Hully', '8 oz', 6.00, 1, 0, 6, 50, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(24, 'Scuppernong Jelly', '8 oz', 6.00, 2, 0, 10, 50, 3)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(25, 'Strawberry Jam', '8 oz', 5.00, 1, 0, 6, 50, 1)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(26, 'Strawberry Port Jam', '8 oz', 6.00, 1, 0, 6, 50, 1)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(27, 'Strawberry Rhubarb Jam', '8 oz', 6.00, 1, 0, 1, 50, 1)
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(28, 'Tomato Basil Jam', '4 oz', 4.00, 1, 0, 4, 50, 2)
+
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(4, 'Blackberry Jam, Seedless', '8 oz', 6.00, 1, 0, 0, 50, 2), 
+(5, 'Blueberry Jelly', '8 oz', 6.00, 2, 0, 6, 50, 2), 
+(6, 'Daylily Jelly', '8 oz', 5.00, 2, 0, 5, 50, 1), 
+(7, 'Fig Jam', '4 oz', 4.00, 1, 0, 6, 10, 3),  
+(8, 'Grapy Jelly', '8 oz', 5.00, 2, 0, 0, 0, 3),  
+(9, 'Honeysuckle Jelly', '8 oz', 5.00, 2, 0, 6, 50, 1), 
+(10, 'Honeysuckle Strawberry Jelly', '8 oz', 5.00, 2, 0, 0, 150, 1), 
+(11, 'Jalapeno Jelly', '8 oz', 6.00, 2, 0, 6, 50, 2), 
+(12, 'Jalapeno Peach Jelly', '8 oz', 6.00, 2, 0, 6, 50, 2), 
+(13, 'Lavendar Lemon Jelly', '8 oz', 6.00, 2, 0, 0, 20, 2), 
+(14, 'Mint Jelly', '8 oz', 5.00, 2, 0, 0, 25, 1), 
+(15, 'Mixed Berry Jam', '8 oz', 6.00, 1, 0, 0, 0, 2), 
+(16, 'Muscadine Jam, Hully', '8 oz', 6.00, 1, 0, 0, 30, 3), 
+(17, 'Muscadine Jelly', '8 oz', 6.00, 2, 0, 3, 0, 3), 
+(18, 'Nectarine Jam', '8 oz', 6.00, 1, 0, 6, 25, 2), 
+(19, 'Peach Jam', '8 oz', 6.00, 1, 0, 6, 50, 2), 
+(20, 'Peach Honey Butter', '8 oz', 6.00, 3, 0, 0, 50, 2), 
+(21, 'Pear Butter', '8 oz', 6.00, 3, 0, 0, 50, 2), 
+(22, 'Purple Hull Jelly', '8 oz', 5.00, 2, 0, 0, 50, 2), 
+(23, 'Scuppernong Jam, Hully', '8 oz', 6.00, 1, 0, 6, 50, 3), 
+(24, 'Scuppernong Jelly', '8 oz', 6.00, 2, 0, 10, 50, 3), 
+(25, 'Strawberry Jam', '8 oz', 5.00, 1, 0, 6, 50, 1), 
+(26, 'Strawberry Port Jam', '8 oz', 6.00, 1, 0, 6, 50, 1), 
+(27, 'Strawberry Rhubarb Jam', '8 oz', 6.00, 1, 0, 1, 50, 1), 
+(28, 'Tomato Basil Jam', '4 oz', 4.00, 1, 0, 4, 50, 2)
