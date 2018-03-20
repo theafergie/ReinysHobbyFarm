@@ -1,0 +1,23 @@
+@(products : List[ProductDetail])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ashley's Jammin' Jellies</title>
+</head>
+<body>
+
+<form>
+    <input type="text" class="form-control" name="search" id="search">
+    <input type="submit" class="btn-info" value="Search">
+</form>
+
+<tbody>
+@for(product <- products){
+<tr>
+    <td>@product.getProductName()</td>
+</tr>
+}
+</tbody>
+</body>
+</html>

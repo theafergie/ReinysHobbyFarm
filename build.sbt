@@ -1,4 +1,4 @@
-name := """play-java-db-example"""
+name := """Reiny's Hobby Farm"""
 
 version := "1.0-SNAPSHOT"
 
@@ -21,6 +21,8 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.7-1" exclude("org.webjars", "jquery"),
   "org.webjars" % "jquery" % "3.2.1"
 )
+
+libraryDependencies += "org.webjars" % "chartjs" % "2.7.0"
 
 // Testing libraries for dealing with CompletionStage...
 libraryDependencies += "org.assertj" % "assertj-core" % "3.6.2" % Test

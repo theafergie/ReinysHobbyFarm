@@ -1,10 +1,46 @@
+@(products : List[ProductDetail])
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
     <title>Order</title>
 </head>
 <body>
+
+<form>
+    <input type="text" class="form-control" name="search" id="search">
+    <input type="submit" class="btn-info" value="Search">
+</form>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="thumbnail">
+            <a href="/assets/images/stand2.jpg">
+                <img src="/assets/images/stand2.jpg" alt="Market Stand" style="width:100%">
+                <div class="caption">
+                    <p><a href="@routes.ProductController.getJamminJellies()"> Ashley's Jammin' Jellies</a></p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="thumbnail">
+            <a href="/assets/images/sprays.jpg">
+                <img src="/assets/images/sprays.jpg" alt="Naturals" style="width:100%">
+                <div class="caption">
+                    <p><a href="@routes.ProductController.getNaturals()"> Naturals</a></p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>

@@ -97,7 +97,10 @@ public class ProductController extends Controller
     {
         List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
                 "FROM Product p " +
-                "WHERE quantityInStock > 0 " +
+                "JOIN Category c ON c.categoryId = p.categoryId " +
+                "WHERE c.categoryName LIKE 'Jam' AND p.quantityInStock > 0 " +
+                "OR c.categoryName LIKE 'Jelly' AND p.quantityInStock > 0 " +
+                "OR c.categoryName LIKE 'Butter' AND p.quantityInStock > 0 " +
                 "ORDER BY productName", ProductDetail.class).getResultList();
 
         return ok(views.html.products.render(products));
@@ -162,4 +165,34 @@ public class ProductController extends Controller
 
         return ok(views.html.products.render(products));
     }
+
+    @Transactional
+    public Result getJamminJellies()
+    {
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+                "FROM Product p " +
+                "JOIN Category c ON c.categoryId = p.categoryId " +
+                "WHERE c.categoryName LIKE 'Jam' " +
+                "OR c.categoryName LIKE 'Jelly' " +
+                "OR c.categoryName LIKE 'Butter' " +
+                "ORDER BY productName", ProductDetail.class).getResultList();
+
+        return ok(views.html.orderjamminjellies.render(products));
+    }
+
+    @Transactional
+    public Result getNaturals()
+    {
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+                "FROM Product p " +
+                "JOIN Category c ON c.categoryId = p.categoryId " +
+                "WHERE c.categoryName LIKE 'Beard Balm' " +
+                "OR c.categoryName LIKE 'Beard Oil' " +
+                "OR c.categoryName LIKE 'Sprays' " +
+                "OR c.categoryName LIKE 'Roll-ons' " +
+                "ORDER BY productName", ProductDetail.class).getResultList();
+
+        return ok(views.html.ordernaturals.render());
+    }
+
 }

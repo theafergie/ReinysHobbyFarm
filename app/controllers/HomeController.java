@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Customer;
+import models.ProductDetail;
 import models.Request;
 import play.data.DynamicForm;
 import play.data.FormFactory;
@@ -12,6 +13,7 @@ import views.html.homepage;
 
 import javax.inject.Inject;
 import javax.persistence.criteria.Order;
+import java.util.List;
 
 public class HomeController extends Controller
 {
@@ -89,9 +91,25 @@ public class HomeController extends Controller
 
     }
 
+    @Transactional (readOnly = true)
     public Result getOrder()
     {
-        return ok(views.html.order.render());
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        String search = form.get("search");
+
+        if(search == null)
+        {
+            search="";
+        }
+        search = "%" + search + "%";
+
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, " +
+                "p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+                "FROM Product p " +
+                "WHERE p.productName " +
+                "LIKE :search").setParameter("search", search).getResultList();
+        return ok(views.html.order.render(products));
     }
 
     @Transactional

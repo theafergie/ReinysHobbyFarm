@@ -27,6 +27,10 @@ GET     /marketstand                controllers.BlogController.getMarket
 GET     /aroundfarm                 controllers.BlogController.getAroundTheFarm
 GET     /fromgarden                 controllers.BlogController.getFromTheGarden
 GET     /jamminjellies              controllers.BlogController.getJamminJellies
+GET     /orderjamminjellies         controllers.ProductController.getJamminJellies
+GET     /naturalsorder              controllers.ProductController.getNaturals
+GET     /chart                      controllers.ChartController.getChart
+GET     /inventorychart             controllers.ChartController.getInventoryChart
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
