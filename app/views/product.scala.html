@@ -1,0 +1,16 @@
+@(product : Product)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+<h1>@product.getProductName()</h1>
+<h2>Description: @product.getDescription()</h2>
+<h2>Ingredients: @product.getIngredients()</h2>
+<h2>Size: @product.getSize()</h2>
+<h2>Price: $@product.getPrice()</h2>
+<h2>Current On-Hand Qty. @product.getQuantityInStock</h2>
+</body>
+</html>

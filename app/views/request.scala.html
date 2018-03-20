@@ -1,0 +1,25 @@
+@import helper._
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request</title>
+</head>
+<body>
+<h2>Don't see your favorite variety? Fill out this request form and we will get back with you soon!</h2>
+<form method="POST">
+    First Name <input type="text" name="firstName"><br>
+    Last Name <input type="text" name="lastName"><br>
+    Phone Number <input type="text" name="phone"><br>
+    Email <input type="text" name="email"><br>
+    What flavor would you like to see me start carrying? <input type="text" name="productName"><br>
+    How many would you require? <input type="text" name="requestedQuantity"><br>
+    <input type="checkbox" name="addMe" value="addMe" checked="checked"/>Add Me As A Customer<br>
+    <p>Comments:</p> <textarea name="comments" cols="20" rows="10"></textarea><br>
+
+    @CSRF.formField
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

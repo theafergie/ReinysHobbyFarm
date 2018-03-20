@@ -2,7 +2,31 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /territories                controllers.TerritoryController.getTerritories
+GET     /                           controllers.HomeController.getHello
+GET     /products                   controllers.ProductController.getProducts
+GET     /product/:id                controllers.ProductController.getProduct(id:Integer)
+GET     /request                    controllers.HomeController.getRequest
+POST    /request                    controllers.HomeController.postRequest
+GET     /order                      controllers.HomeController.getOrder
+POST    /order                      controllers.HomeController.postOrder
+GET     /jams                       controllers.ProductController.getJams
+GET     /jellies                    controllers.ProductController.getJellies
+GET     /butters                    controllers.ProductController.getButters
+GET     /sprays                     controllers.ProductController.getSprays
+GET     /rollons                    controllers.ProductController.getRollOns
+GET     /instock                    controllers.ProductController.getInStock
+GET     /veganoptions               controllers.ProductController.getVegan
+GET     /seasons                    controllers.ProductController.getSeasons
+GET     /preorder                   controllers.ProductController.getPreOrders
+GET     /beardoils                  controllers.ProductController.getBeardOils
+GET     /beardbalms                 controllers.ProductController.getBeardBalms
+GET     /aboutus                    controllers.BlogController.getBlog
+GET     /gallery                    controllers.BlogController.getGallery
+GET     /animals                    controllers.BlogController.getAnimals
+GET     /marketstand                controllers.BlogController.getMarket
+GET     /aroundfarm                 controllers.BlogController.getAroundTheFarm
+GET     /fromgarden                 controllers.BlogController.getFromTheGarden
+GET     /jamminjellies              controllers.BlogController.getJamminJellies
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

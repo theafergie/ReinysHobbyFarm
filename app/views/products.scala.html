@@ -1,0 +1,28 @@
+@(products : List[ProductDetail])
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+<h1>HTML number of products @products.size()</h1>
+
+<form>
+<table border="1">
+<thead>
+    <th>Variety</th>
+</thead>
+<tbody>
+@for(product <- products){
+<tr>
+    <td><a href="product/@product.getProductId()"> @product.getProductName()</a></td>
+
+</tr>
+}
+</tbody>
+</table>
+</form>
+</body>
+</html>

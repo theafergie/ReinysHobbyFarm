@@ -16,6 +16,12 @@ libraryDependencies += javaJdbc
 libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.14.Final"
 libraryDependencies += "org.mariadb.jdbc" % "mariadb-java-client" % "2.2.2"
 
+libraryDependencies ++= Seq(
+  "org.webjars" %% "webjars-play" % "2.6.3",
+  "org.webjars" % "bootstrap" % "3.3.7-1" exclude("org.webjars", "jquery"),
+  "org.webjars" % "jquery" % "3.2.1"
+)
+
 // Testing libraries for dealing with CompletionStage...
 libraryDependencies += "org.assertj" % "assertj-core" % "3.6.2" % Test
 libraryDependencies += "org.awaitility" % "awaitility" % "2.0.0" % Test

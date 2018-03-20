@@ -25,7 +25,7 @@ public class TerritoryController extends Controller
     {
         List<TerritoryDetail> territories = jpaApi.em().createQuery("SELECT NEW models.TerritoryDetail(t.territoryId, t.territoryDescription, r.regionId, r.regionDescription) FROM Territory t JOIN Region r ON t.regionId = r.regionId ORDER BY territoryDescription").getResultList();
 
-        return ok(views.html.territories.render(territories));
+        return ok("territories");
 
 
     }
