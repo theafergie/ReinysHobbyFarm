@@ -1,8 +1,15 @@
 package models;
 
+import play.db.jpa.JPAApi;
+import play.db.jpa.Transactional;
+import play.mvc.Result;
+
+import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+
+import static play.mvc.Results.notFound;
 
 @Entity
 public class ProductDetail
@@ -15,6 +22,7 @@ public class ProductDetail
     private BigDecimal price;
     private int categoryId;
     private int seasonId;
+    private byte[] picture;
 
     public ProductDetail(int productId, String productName, BigDecimal price, String ingredients, String size, int categoryId, int seasonId)
     {
@@ -24,6 +32,7 @@ public class ProductDetail
         this.size = size;
         this.price = price;
         this.seasonId = seasonId;
+
     }
 
     public int getProductId()
@@ -60,4 +69,10 @@ public class ProductDetail
     {
         return price;
     }
+
+    public byte[] getPicture()
+    {
+        return picture;
+    }
+
 }

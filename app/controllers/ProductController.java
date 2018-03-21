@@ -1,7 +1,10 @@
 package controllers;
 
+import models.OrderDetail;
 import models.Product;
 import models.ProductDetail;
+import play.data.DynamicForm;
+import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -9,15 +12,20 @@ import play.mvc.Result;
 import views.html.product;
 
 import javax.inject.Inject;
+import javax.persistence.criteria.Order;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductController extends Controller
 {
+    private FormFactory formFactory;
     private JPAApi jpaApi;
 
     @Inject
-    public ProductController(JPAApi jpaApi)
+    public ProductController(FormFactory formFactory, JPAApi jpaApi)
     {
+        this.formFactory = formFactory;
         this.jpaApi = jpaApi;
     }
 
@@ -25,7 +33,7 @@ public class ProductController extends Controller
     public Result getProducts()
     {
         List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size)" +
-                "FROM Product p")
+                "FROM Product p", ProductDetail.class)
                         .getResultList();
         return ok(views.html.products.render(products));
     }
@@ -120,11 +128,12 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getSeasons()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, " +
+                "p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
                 "FROM Product p " +
                 "ORDER BY productName", ProductDetail.class).getResultList();
 
-        return ok(views.html.products.render(products));
+        return ok(views.html.seasons.render());
     }
     @Transactional (readOnly = true)
     public Result getPreOrders()
@@ -166,16 +175,31 @@ public class ProductController extends Controller
         return ok(views.html.products.render(products));
     }
 
-    @Transactional
+    @Transactional (readOnly = true)
     public Result getJamminJellies()
     {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        String search = form.get("search");
+
+        if(search == null)
+        {
+            search = "";
+        }
+
+        search = "%" + search + "%";
+
         List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName LIKE 'Jam' " +
                 "OR c.categoryName LIKE 'Jelly' " +
                 "OR c.categoryName LIKE 'Butter' " +
-                "ORDER BY productName", ProductDetail.class).getResultList();
+                "AND c.categoryName LIKE :search " +
+                "AND p.productName LIKE :search " +
+                "ORDER BY productName", ProductDetail.class)
+                .setParameter("search", search)
+                .getResultList();
 
         return ok(views.html.orderjamminjellies.render(products));
     }
@@ -190,9 +214,94 @@ public class ProductController extends Controller
                 "OR c.categoryName LIKE 'Beard Oil' " +
                 "OR c.categoryName LIKE 'Sprays' " +
                 "OR c.categoryName LIKE 'Roll-ons' " +
-                "ORDER BY productName", ProductDetail.class).getResultList();
+                "ORDER BY categoryName", ProductDetail.class).getResultList();
 
-        return ok(views.html.ordernaturals.render());
+        return ok(views.html.ordernaturals.render(products));
     }
+    @Transactional(readOnly = true)
+    public Result getPicture(int id)
+    {
+
+        Product product = jpaApi.em().
+                createQuery("SELECT p FROM Product p WHERE productId = :productId", Product.class).
+                setParameter("productId", id).
+                getSingleResult();
+
+        Result picture;
+
+        if(product.getPicture() == null)
+        {
+            picture = notFound();
+        }
+        else
+        {
+            picture = ok(product.getPicture()).as("image/jpg");
+        }
+        return picture;
+    }
+
+    @Transactional(readOnly = true)
+    public Result postCheckout()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+        List<Product> products = jpaApi.em().createQuery("SELECT p FROM Product p ORDER BY productName", Product.class).
+                getResultList();
+
+        List<OrderDetail> orderDetails = new ArrayList<>();
+
+        for(Product product : products)
+        {
+            String key = "" + product.getProductId();
+            String value = form.get(key);
+
+            if(value != null)
+            {
+                int quantity = Integer.parseInt(value);
+
+                if(quantity > 0)
+                {
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setProductId(product.getProductId());
+                    orderDetail.setQuantity(quantity);
+                    orderDetail.setUnitPrice(product.getPrice());
+                    orderDetail.setProductName(product.getProductName());
+                    orderDetails.add(orderDetail);
+                }
+
+
+            }
+
+        }
+
+        return ok(views.html.ordersummary.render(orderDetails));
+    }
+
+    /*@Transactional
+    public Result getTotal()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        OrderDetail orderDetail = new OrderDetail();
+
+
+        List<Product> products = jpaApi.em().createQuery("SELECT p FROM Product p ORDER BY productName", Product.class).
+                getResultList();
+
+        List<OrderDetail> orderDetails = new ArrayList<>();
+
+        for(Product product : products)
+        {
+            String key = "" + product.getProductId();
+            String value = form.get(key);
+
+            int total = Integer.parseInt(value);
+
+
+
+
+        }
+
+        return ok("");
+    }*/
 
 }

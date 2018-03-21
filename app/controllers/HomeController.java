@@ -1,8 +1,6 @@
 package controllers;
 
-import models.Customer;
-import models.ProductDetail;
-import models.Request;
+import models.*;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
@@ -13,6 +11,7 @@ import views.html.homepage;
 
 import javax.inject.Inject;
 import javax.persistence.criteria.Order;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class HomeController extends Controller
@@ -108,14 +107,14 @@ public class HomeController extends Controller
                 "p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
                 "FROM Product p " +
                 "WHERE p.productName " +
-                "LIKE :search").setParameter("search", search).getResultList();
+                "LIKE :search", ProductDetail.class).setParameter("search", search).getResultList();
         return ok(views.html.order.render(products));
     }
 
     @Transactional
     public Result postOrder()
     {
-        //Order order = new Order();
+        //OrderDetail order = new OrderDetail();
         DynamicForm form = formFactory.form().bindFromRequest();
 
        // jpaApi.em().persist(order);
@@ -123,4 +122,6 @@ public class HomeController extends Controller
 
         return redirect(routes.HomeController.getOrder());
     }
+
+
 }

@@ -1,8 +1,13 @@
 package models;
 
+import play.db.jpa.Transactional;
+import play.mvc.Result;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+
+import static play.mvc.Results.notFound;
 
 @Entity
 public class Product
@@ -19,6 +24,7 @@ public class Product
     private String size;
     private String description;
     private String ingredients;
+    private byte[] picture;
 
     public int getProductId()
     {
@@ -119,4 +125,11 @@ public class Product
     {
         return ingredients;
     }
+
+    public byte[] getPicture()
+    {
+        return picture;
+    }
+
+
 }

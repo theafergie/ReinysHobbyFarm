@@ -1,15 +1,74 @@
+@(products : List[ProductDetail])
+@import helper._
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
     <title>RHF Naturals</title>
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
 
-<form>
-    <input type="text" class="form-control" name="search" id="search">
-    <input type="submit" class="btn-info" value="Search">
-</form>
+
+            <form method="POST" action="checkout">
+                @CSRF.formField
+
+                <table class="table table-hover" border="1">
+
+                <tbody>
+                @for(product <- products){
+                <tr>
+                    <td><a href="product/@product.getProductId()"> @product.getProductName()</a></td>
+                    <td>@product.getSize()</td>
+                    <td>@product.getPrice()</td>
+
+                    <td>Qty.
+                        <select name="@product.getProductId()">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </td>
+
+                    }
+
+                </tr>
+                <td><form>
+                    <input type="submit" class="btn-info" value="Add To Cart">
+                </form>
+                </td>
+
+                </tbody>
+            </table>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

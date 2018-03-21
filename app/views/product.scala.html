@@ -1,16 +1,68 @@
 @(product : Product)
+@import helper._
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
     <title>Product</title>
 </head>
 <body>
-<h1>@product.getProductName()</h1>
-<h2>Description: @product.getDescription()</h2>
-<h2>Ingredients: @product.getIngredients()</h2>
-<h2>Size: @product.getSize()</h2>
-<h2>Price: $@product.getPrice()</h2>
-<h2>Current On-Hand Qty. @product.getQuantityInStock</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+            <h1>@product.getProductName()</h1>
+            <h2>Description: @product.getDescription()</h2>
+            <h2>Ingredients: @product.getIngredients()</h2>
+            <h2>Size: @product.getSize()</h2>
+            <h2>Price: $@product.getPrice()</h2>
+            <h2>Current On-Hand Qty. @product.getQuantityInStock</h2>
+
+            <form method="POST" action="checkout">
+                @CSRF.formField
+
+                    <select name="@product.getProductId()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+            </select>
+
+            <td><form>
+                <input type="submit" class="btn-info" value="Add To Cart">
+            </form>
+            </td>
+
+            </form>
+
+
+        </div>
+            <div class="col-xs-6">
+                <img src="/productPicture/@product.getProductId()" class="img-rounded" width="500">
+            </div>
+    </div>
+</div>
+
 </body>
 </html>

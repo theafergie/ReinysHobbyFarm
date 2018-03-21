@@ -81,3 +81,10 @@ VALUES(4, 'Blackberry Jam, Seedless', '8 oz', 6.00, 1, 0, 0, 50, 2),
 (26, 'Strawberry Port Jam', '8 oz', 6.00, 1, 0, 6, 50, 1), 
 (27, 'Strawberry Rhubarb Jam', '8 oz', 6.00, 1, 0, 1, 50, 1), 
 (28, 'Tomato Basil Jam', '4 oz', 4.00, 1, 0, 4, 50, 2)
+
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(44, 'Ouachita Mountains Beard Oil', '1 oz', 12.00, 4, 0, 4, 15, 4), (45, 'Ozark Highlands Beard Oil', '1 oz', 12.00, 4, 0, 4, 15, 4), 
+(46, 'Spring River Beard Oil', '1 oz', 12.00, 4, 0, 4, 15, 4), (47, 'Boston Mountains Beard Oil', '1 oz', 12.00, 4, 0, 4, 15, 4), (48, 'Plainsman Beard Oil', '1 oz', 12.00, 4, 0, 4, 15, 4)
+
+INSERT INTO product (productId, productName, size, price, categoryId, vegan, quantityInStock, maxPreOrder, seasonId)
+VALUES(49, 'Woodsy Beard Balm', '2 oz', 9.00, 5, 0, 4, 15, 4), (50, 'Deep Forest Beard Balm', '2 oz', 9.00, 5, 0, 4, 15, 4)
