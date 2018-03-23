@@ -3,23 +3,29 @@
 # ~~~~
 
 GET     /                           controllers.HomeController.getHello
-GET     /products                   controllers.ProductController.getProducts
+# GET     /products                   controllers.ProductController.getProducts
 GET     /product/:id                controllers.ProductController.getProduct(id:Integer)
+
 GET     /request                    controllers.HomeController.getRequest
 POST    /request                    controllers.HomeController.postRequest
+
 GET     /order                      controllers.HomeController.getOrder
 POST    /order                      controllers.HomeController.postOrder
+
 GET     /jams                       controllers.ProductController.getJams
 GET     /jellies                    controllers.ProductController.getJellies
 GET     /butters                    controllers.ProductController.getButters
+
 GET     /sprays                     controllers.ProductController.getSprays
 GET     /rollons                    controllers.ProductController.getRollOns
+GET     /beardoils                  controllers.ProductController.getBeardOils
+GET     /beardbalms                 controllers.ProductController.getBeardBalms
+
 GET     /instock                    controllers.ProductController.getInStock
 GET     /veganoptions               controllers.ProductController.getVegan
 GET     /seasons                    controllers.ProductController.getSeasons
 GET     /preorder                   controllers.ProductController.getPreOrders
-GET     /beardoils                  controllers.ProductController.getBeardOils
-GET     /beardbalms                 controllers.ProductController.getBeardBalms
+
 GET     /aboutus                    controllers.BlogController.getBlog
 GET     /gallery                    controllers.BlogController.getGallery
 GET     /animals                    controllers.BlogController.getAnimals
@@ -27,15 +33,23 @@ GET     /marketstand                controllers.BlogController.getMarket
 GET     /aroundfarm                 controllers.BlogController.getAroundTheFarm
 GET     /fromgarden                 controllers.BlogController.getFromTheGarden
 GET     /jamminjellies              controllers.BlogController.getJamminJellies
+
 GET     /orderjamminjellies         controllers.ProductController.getJamminJellies
 GET     /naturalsorder              controllers.ProductController.getNaturals
+
 GET     /chart                      controllers.ChartController.getChart
 GET     /inventorychart             controllers.ChartController.getInventoryChart
+
 GET     /productPicture/:id         controllers.ProductController.getPicture(id:Integer)
-# POST    /checkout                   controllers.ProductController.postCheckout
-# POST    /product/checkout           controllers.ProductController.postCheckout
+
+POST    /product/checkout           controllers.ShopController.postCheckout
 GET     /orderdetail                controllers.ShopController.getOrderDetail
 POST    /orderdetail                controllers.ShopController.postOrderDetail
+
+POST    /checkout                   controllers.ShopController.postCheckout
+
+POST    /emptycart                  controllers.ShopController.postEmptyCart
+POST    /purchase                   controllers.ShopController.postPurchase
 
 GET     /addcustomer                controllers.CustomerController.getAddCustomer
 POST    /addcustomer                controllers.CustomerController.postAddCustomer

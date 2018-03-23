@@ -15,8 +15,7 @@ public class OrderDetail
     private int productId;
     private BigDecimal unitPrice;
     private int quantity;
-    private String productName;
-    private BigDecimal total;
+    //private String productName;
     private int customerId;
     private int categoryId;
 
@@ -70,25 +69,15 @@ public class OrderDetail
         this.orderProductId = orderProductId;
     }
 
-    public String getProductName()
-    {
-        return productName;
-    }
-
-    public void setProductName(String productName)
-    {
-        this.productName = productName;
-    }
-
-    public BigDecimal getTotal()
-    {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total)
-    {
-        this.total = total;
-    }
+//    public String getProductName()
+//    {
+//        return productName;
+//    }
+//
+//    public void setProductName(String productName)
+//    {
+//        this.productName = productName;
+//    }
 
     public int getCustomerId()
     {

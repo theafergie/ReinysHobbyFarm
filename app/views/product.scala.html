@@ -15,12 +15,24 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-6">
+
+
+
+
             <h1>@product.getProductName()</h1>
-            <h2>Description: @product.getDescription()</h2>
-            <h2>Ingredients: @product.getIngredients()</h2>
             <h2>Size: @product.getSize()</h2>
             <h2>Price: $@product.getPrice()</h2>
             <h2>Current On-Hand Qty. @product.getQuantityInStock</h2>
+
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#description">Description</button>
+            <div id="description" class="collapse">
+                @product.getDescription()
+            </div> <br>
+
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ingredients">Ingredients</button>
+            <div id="ingredients" class="collapse">
+                @product.getIngredients()
+            </div> <br>
 
             <form method="POST" action="orderdetail">
                 @CSRF.formField

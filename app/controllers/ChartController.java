@@ -1,6 +1,7 @@
 package controllers;
 
 import models.InventoryCount;
+import models.SalesChart;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -27,11 +28,25 @@ public class ChartController extends Controller
     @Transactional(readOnly = true)
     public Result getInventoryChart()
     {
-        String sql = "SELECT NEW InventoryCount(c.categoryId, c.categoryName, COUNT(*)) " +
+        String sql = "SELECT NEW InventoryCount(c.categoryId, c.categoryName, SUM(p.quantityInStock)) " +
                 "FROM Category c " +
                 "JOIN Product p ON p.categoryId = c.categoryId " +
                 "GROUP BY c.categoryName";
         List<InventoryCount> inventoryCounts = jpaApi.em().createQuery(sql, InventoryCount.class).getResultList();
-        return ok(views.html.inventorychart.render(inventoryCounts));
+
+        String sqlSales = "SELECT NEW SalesChart( YEAR(orderDate), SUM(quantity * unitPrice)) " +
+                "FROM OrderDetail od " +
+                "JOIN OrderHeader oh ON oh.orderId = od.orderId " +
+                " GROUP BY YEAR(orderDate)";
+        List<SalesChart> salesCharts = jpaApi.em().createQuery(sqlSales, SalesChart.class).getResultList();
+
+        return ok(views.html.inventorychart.render(inventoryCounts, salesCharts));
     }
+
+    /*@Transactional (readOnly = true)
+    public Result getSalesChart()
+    {
+
+        return ok(views.html.inventorychart.render(salesCharts));
+    }*/
 }

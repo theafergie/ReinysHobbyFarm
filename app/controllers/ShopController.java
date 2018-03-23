@@ -1,8 +1,6 @@
 package controllers;
 
-import models.CartItem;
-import models.OrderDetail;
-import models.ProductDetail;
+import models.*;
 import org.hibernate.criterion.Order;
 import play.data.DynamicForm;
 import play.data.FormFactory;
@@ -12,7 +10,10 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ShopController extends Controller
@@ -46,7 +47,7 @@ public class ShopController extends Controller
     public Result postOrderDetail()
     {
         //OrderDetail orderDetail = new OrderDetail();
-        CartItem cartItem = new CartItem();
+
         DynamicForm form = formFactory.form().bindFromRequest();
 
         Result result;
@@ -60,18 +61,104 @@ public class ShopController extends Controller
         BigDecimal unitPrice = new BigDecimal(form.get("unitPrice"));
 
 
-//        cartItem.setOrderProductId(orderProductId);
-//        cartItem.setCustomerId(customerId);
-//        cartItem.setCategoryId(categoryId);
-//        cartItem.setQuantity(quantity);
-//        cartItem.setOrderId(orderId);
-//        cartItem.setProductId(productId);
-//        cartItem.setUnitPrice(unitPrice);
-
-        jpaApi.em().persist(cartItem);
-
         return redirect(routes.ShopController.getOrderDetail());
 
+    }
+
+    @Transactional(readOnly = true)
+    public Result postCheckout()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        String sql = "SELECT p FROM Product p ORDER BY productName";
+        List<Product> products = jpaApi.em().createQuery(sql, Product.class).getResultList();
+
+        List<CartItem> cartItems;
+
+        String json = session().get("cart");
+
+        if(json == null)
+        {
+            cartItems = new ArrayList<>();
+        }
+        else
+        {
+            cartItems = CartItem.fromJSON(json);
+        }
+
+        for(Product product : products)
+        {
+            String key = "" + product.getProductId();
+            String value = form.get(key);
+
+            if(value != null)
+            {
+                int quantity = Integer.parseInt(value);
+
+                if(quantity > 0)
+                {
+                    CartItem cartItem = new CartItem();
+                    cartItem.setProductId(product.getProductId());
+                    cartItem.setQuantity(quantity);
+                    cartItem.setUnitPrice(product.getPrice());
+                    cartItem.setCategortyId(product.getCategoryId());
+                    cartItem.setProductName(product.getProductName());
+                    cartItems.add(cartItem);
+                }
+            }
+        }
+
+        json = CartItem.toJSON(cartItems);
+        session().put("cart", json);
+
+
+        return ok(views.html.ordersummary.render(cartItems));
+    }
+
+    @Transactional
+    public Result postPurchase()
+    {
+        String json = session().get("cart");
+        List<CartItem> cartItems;
+
+        if(json == null)
+        {
+            //TODO error
+        }
+        else
+        {
+            cartItems = CartItem.fromJSON(json);
+
+            OrderHeader orderHeader = new OrderHeader();
+            orderHeader.setCustomerId(7);
+            orderHeader.setOrderDate(new Date());
+            jpaApi.em().persist(orderHeader);
+
+            for(CartItem cartItem : cartItems)
+            {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setOrderId(orderHeader.getOrderId());
+                orderDetail.setUnitPrice(cartItem.getUnitPrice());
+                orderDetail.setProductId(cartItem.getProductId());
+                orderDetail.setQuantity(cartItem.getQuantity());
+                orderDetail.setCustomerId(orderHeader.getCustomerId());
+                orderDetail.setCategoryId(cartItem.getCategortyId());
+
+                jpaApi.em().persist(orderDetail);
+            }
+
+            session().put("cart", null);
+
+        }
+        //TODO temporary
+        return ok("Sold!");
+    }
+
+    public Result postEmptyCart()
+    {
+        session().put("cart", null);
+
+        return ok("Cart emptied");
     }
 
 }

@@ -13,21 +13,26 @@
 </head>
 <body>
 
-@for(cartItems <- cartItem){
-    @cartItems.getProductName()<br>
-    Qty: @cartItems.getQuantity()<br>
-    Price: @cartItems.getUnitPrice()<br>
+@for(cartItem <- cartItem){
+    @cartItem.getProductName()<br>
+    Qty: @cartItem.getQuantity()<br>
+    Price: @cartItem.getUnitPrice()<br>
 <br>
 }
 
-<form>
-    @CSRF.formField
+<form method="GET" action="order">
     <input type="submit" class="btn-info" value="Continue Shopping">
 </form>
 
 <td>
-    <form>
+    <form method="POST" action="purchase">
+        @CSRF.formField
         <input type="submit" class="btn-info" value="Checkout">
+    </form>
+
+    <form method="POST" action="emptycart">
+        @CSRF.formField
+        <input type="submit" class="btn-info" value="Empty Cart">
     </form>
 </td>
 </body>
