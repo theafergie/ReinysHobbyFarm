@@ -22,7 +22,7 @@
             <h2>Price: $@product.getPrice()</h2>
             <h2>Current On-Hand Qty. @product.getQuantityInStock</h2>
 
-            <form method="POST" action="checkout">
+            <form method="POST" action="orderdetail">
                 @CSRF.formField
 
                     <select name="@product.getProductId()">
