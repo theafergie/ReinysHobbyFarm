@@ -1,0 +1,36 @@
+@import helper._
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <title>Add Customer</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3">
+            <form method="POST">
+                First Name <input type="text" name="firstName"><br>
+                Last Name <input type="text" name="lastName"><br>
+                Address <input type="text" name="address"><br>
+                City <input type="text" name="city"><br>
+                Phone Number <input type="text" name="phone"><br>
+                Email <input type="text" name="email"><br>
+                <p>Would you like a text alert or email alert when your order is in stock?</p>
+                <input type="checkbox" name="textAlert" value="textAlert" />Text<br>
+                <input type="checkbox" name="emailAlert" value="emailAlert"/>Email<br>
+
+                @CSRF.formField
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

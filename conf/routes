@@ -32,10 +32,13 @@ GET     /naturalsorder              controllers.ProductController.getNaturals
 GET     /chart                      controllers.ChartController.getChart
 GET     /inventorychart             controllers.ChartController.getInventoryChart
 GET     /productPicture/:id         controllers.ProductController.getPicture(id:Integer)
-POST    /checkout                   controllers.ProductController.postCheckout
-POST    /product/checkout           controllers.ProductController.postCheckout
+# POST    /checkout                   controllers.ProductController.postCheckout
+# POST    /product/checkout           controllers.ProductController.postCheckout
 GET     /orderdetail                controllers.ShopController.getOrderDetail
 POST    /orderdetail                controllers.ShopController.postOrderDetail
+
+GET     /addcustomer                controllers.CustomerController.getAddCustomer
+POST    /addcustomer                controllers.CustomerController.postAddCustomer
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

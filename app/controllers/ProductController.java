@@ -240,7 +240,7 @@ public class ProductController extends Controller
         return picture;
     }
 
-    @Transactional(readOnly = true)
+    /*@Transactional(readOnly = true)
     public Result postCheckout()
     {
         DynamicForm form = formFactory.form().bindFromRequest();
@@ -274,7 +274,7 @@ public class ProductController extends Controller
         }
 
         return ok(views.html.ordersummary.render(orderDetails));
-    }
+    }*/
 
     /*@Transactional
     public Result getTotal()

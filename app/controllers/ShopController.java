@@ -1,5 +1,6 @@
 package controllers;
 
+import models.CartItem;
 import models.OrderDetail;
 import models.ProductDetail;
 import org.hibernate.criterion.Order;
@@ -28,18 +29,24 @@ public class ShopController extends Controller
 
     public Result getOrderDetail()
     {
-        OrderDetail orderDetail = new OrderDetail();
+       /* OrderDetail orderDetail = new OrderDetail();
         List<OrderDetail> orderDetails = jpaApi.em().createQuery("SELECT NEW OrderDetail (od.orderProductId, " +
                 "od.customerId, od.categoryId, od.quantity, od.orderId, od.productId, od.unitPrice) " +
-                "FROM OrderDetail od", OrderDetail.class).getResultList();
+                "FROM OrderDetail od", OrderDetail.class).getResultList(); */
 
-        return ok(views.html.ordersummary.render(orderDetails));
+        CartItem cartItem = new CartItem();
+        List<CartItem> cartItems = jpaApi.em().createQuery("SELECT NEW CartItem (od.orderProductId, " +
+                "od.customerId, od.categoryId, od.quantity, od.orderId, od.productId, od.unitPrice) " +
+                "FROM CartItem od", CartItem.class).getResultList();
+
+        return ok(views.html.ordersummary.render(cartItems));
     }
 
     @Transactional(readOnly = true)
     public Result postOrderDetail()
     {
-        OrderDetail orderDetail = new OrderDetail();
+        //OrderDetail orderDetail = new OrderDetail();
+        CartItem cartItem = new CartItem();
         DynamicForm form = formFactory.form().bindFromRequest();
 
         Result result;
@@ -53,15 +60,15 @@ public class ShopController extends Controller
         BigDecimal unitPrice = new BigDecimal(form.get("unitPrice"));
 
 
-        orderDetail.setOrderProductId(orderProductId);
-        orderDetail.setCustomerId(customerId);
-        orderDetail.setCategoryId(categoryId);
-        orderDetail.setQuantity(quantity);
-        orderDetail.setOrderId(orderId);
-        orderDetail.setProductId(productId);
-        orderDetail.setUnitPrice(unitPrice);
+//        cartItem.setOrderProductId(orderProductId);
+//        cartItem.setCustomerId(customerId);
+//        cartItem.setCategoryId(categoryId);
+//        cartItem.setQuantity(quantity);
+//        cartItem.setOrderId(orderId);
+//        cartItem.setProductId(productId);
+//        cartItem.setUnitPrice(unitPrice);
 
-        jpaApi.em().persist(orderDetail);
+        jpaApi.em().persist(cartItem);
 
         return redirect(routes.ShopController.getOrderDetail());
 

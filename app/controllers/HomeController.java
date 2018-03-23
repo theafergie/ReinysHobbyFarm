@@ -28,7 +28,7 @@ public class HomeController extends Controller
 
     public Result getHello()
     {
-             return ok(views.html.homepage.render());
+        return ok(views.html.homepage.render());
     }
 
     public Result getRequest()
@@ -50,8 +50,7 @@ public class HomeController extends Controller
 
         String checked = form.get("addMe");
 
-        if(checked != null)
-        {
+        if (checked != null) {
             //create object to save
             Customer customer = new Customer();
             //save object to database
@@ -90,16 +89,15 @@ public class HomeController extends Controller
 
     }
 
-    @Transactional (readOnly = true)
+    @Transactional(readOnly = true)
     public Result getOrder()
     {
         DynamicForm form = formFactory.form().bindFromRequest();
 
         String search = form.get("search");
 
-        if(search == null)
-        {
-            search="";
+        if (search == null) {
+            search = "";
         }
         search = "%" + search + "%";
 
@@ -114,14 +112,15 @@ public class HomeController extends Controller
     @Transactional
     public Result postOrder()
     {
-        //OrderDetail order = new OrderDetail();
+        OrderDetail order = new OrderDetail();
         DynamicForm form = formFactory.form().bindFromRequest();
 
-       // jpaApi.em().persist(order);
+         jpaApi.em().persist(order);
 
 
         return redirect(routes.HomeController.getOrder());
     }
+
 
 
 }

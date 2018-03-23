@@ -1,4 +1,4 @@
-@(orderDetails : List[OrderDetail])
+@(cartItem : List[CartItem])
 @import helper._
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +13,10 @@
 </head>
 <body>
 
-@for(orderDetail <- orderDetails){
-    @orderDetail.getProductName()<br>
-    Qty: @orderDetail.getQuantity()<br>
-    Price: @orderDetail.getUnitPrice()<br>
-    Total: @orderDetail.getTotal()<br>
+@for(cartItems <- cartItem){
+    @cartItems.getProductName()<br>
+    Qty: @cartItems.getQuantity()<br>
+    Price: @cartItems.getUnitPrice()<br>
 <br>
 }
 
