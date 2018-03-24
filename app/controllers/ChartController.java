@@ -40,6 +40,8 @@ public class ChartController extends Controller
                 " GROUP BY YEAR(orderDate)";
         List<SalesChart> salesCharts = jpaApi.em().createQuery(sqlSales, SalesChart.class).getResultList();
 
+        //String sqlBestSellers = "SELECT NEW BestSellers(od.productId, od.quantity"
+
         return ok(views.html.inventorychart.render(inventoryCounts, salesCharts));
     }
 

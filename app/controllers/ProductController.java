@@ -125,16 +125,7 @@ public class ProductController extends Controller
         return ok(views.html.products.render(products));
     }
 
-    @Transactional (readOnly = true)
-    public Result getSeasons()
-    {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, " +
-                "p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
-                "FROM Product p " +
-                "ORDER BY productName", ProductDetail.class).getResultList();
 
-        return ok(views.html.seasons.render());
-    }
     @Transactional (readOnly = true)
     public Result getPreOrders()
     {

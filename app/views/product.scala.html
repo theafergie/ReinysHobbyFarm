@@ -10,6 +10,8 @@
     <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
 
     <title>Product</title>
+    <a href="@routes.HomeController.getHello()"><img src="/assets/images/transparent-copy.png" alt="Rooster" height="225" /></a>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -34,7 +36,7 @@
                 @product.getIngredients()
             </div> <br>
 
-            <form method="POST" action="orderdetail">
+            <form method="POST" action="checkout">
                 @CSRF.formField
 
                     <select name="@product.getProductId()">
@@ -61,10 +63,11 @@
                     <option value="20">20</option>
             </select>
 
-            <td><form>
+
+                <form>
                 <input type="submit" class="btn-info" value="Add To Cart">
             </form>
-            </td>
+
 
             </form>
 

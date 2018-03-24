@@ -115,6 +115,9 @@ public class ShopController extends Controller
         return ok(views.html.ordersummary.render(cartItems));
     }
 
+
+
+
     @Transactional
     public Result postPurchase()
     {

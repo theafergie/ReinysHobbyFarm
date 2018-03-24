@@ -10,6 +10,7 @@ GET     /request                    controllers.HomeController.getRequest
 POST    /request                    controllers.HomeController.postRequest
 
 GET     /order                      controllers.HomeController.getOrder
+GET     /product/order              controllers.HomeController.getOrder
 POST    /order                      controllers.HomeController.postOrder
 
 GET     /jams                       controllers.ProductController.getJams
@@ -23,7 +24,6 @@ GET     /beardbalms                 controllers.ProductController.getBeardBalms
 
 GET     /instock                    controllers.ProductController.getInStock
 GET     /veganoptions               controllers.ProductController.getVegan
-GET     /seasons                    controllers.ProductController.getSeasons
 GET     /preorder                   controllers.ProductController.getPreOrders
 
 GET     /aboutus                    controllers.BlogController.getBlog
@@ -37,8 +37,8 @@ GET     /jamminjellies              controllers.BlogController.getJamminJellies
 GET     /orderjamminjellies         controllers.ProductController.getJamminJellies
 GET     /naturalsorder              controllers.ProductController.getNaturals
 
-GET     /chart                      controllers.ChartController.getChart
-GET     /inventorychart             controllers.ChartController.getInventoryChart
+# GET     /chart                      controllers.ChartController.getChart
+GET     /chart                      controllers.ChartController.getInventoryChart
 
 GET     /productPicture/:id         controllers.ProductController.getPicture(id:Integer)
 
@@ -46,10 +46,13 @@ POST    /product/checkout           controllers.ShopController.postCheckout
 GET     /orderdetail                controllers.ShopController.getOrderDetail
 POST    /orderdetail                controllers.ShopController.postOrderDetail
 
+GET     /product/checkout           controllers.ShopController.postCheckout
 POST    /checkout                   controllers.ShopController.postCheckout
 
 POST    /emptycart                  controllers.ShopController.postEmptyCart
+POST    /product/emptycart          controllers.ShopController.postEmptyCart
 POST    /purchase                   controllers.ShopController.postPurchase
+POST    /product/purchase           controllers.ShopController.postPurchase
 
 GET     /addcustomer                controllers.CustomerController.getAddCustomer
 POST    /addcustomer                controllers.CustomerController.postAddCustomer
