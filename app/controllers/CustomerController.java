@@ -1,5 +1,6 @@
 package controllers;
 
+import Services.Email;
 import models.Customer;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -10,6 +11,11 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+
+import java.util.Date;
+import java.util.List;
+
+import static org.hibernate.loader.Loader.SELECT;
 
 public class CustomerController extends Controller
 {
@@ -40,19 +46,17 @@ public class CustomerController extends Controller
 
         String checkedEmail = form.get("emailAlert");
 
-        if (checkedText != null)
-        {
+        if (checkedText != null) {
             boolean textAlert = true;
             customer.setTextAlert(textAlert);
             //jpaApi.em().persist(customer);
 
         }
 
-        if (checkedEmail != null)
-        {
+        if (checkedEmail != null) {
             boolean emailAlert = true;
             customer.setEmailAlert(emailAlert);
-           // jpaApi.em().persist(customer);
+            // jpaApi.em().persist(customer);
 
         }
 
@@ -64,7 +68,6 @@ public class CustomerController extends Controller
         String email = form.get("email");
 //        boolean textAlert =  new Boolean(form.get("textAlert"));
 //        boolean emailAlert = new Boolean(form.get("emalAlert"));
-
 
 
         customer.setFirstName(firstName);
@@ -83,4 +86,57 @@ public class CustomerController extends Controller
 
     }
 
+    public Result getLogIn()
+    {
+        return ok(views.html.addcustomer.render());
+    }
+
+    @Transactional
+    public Result postLogIn()
+    {
+        DynamicForm form = formFactory.form().bindFromRequest();
+
+        String email = form.get("email");
+        String password = form.get("password");
+
+        String sql = "SELECT c FROM Customer c WHERE email = :email AND password = :password";
+
+        List<Customer> customers = jpaApi.em().createQuery(sql, Customer.class)
+                .setParameter("email", email)
+                .setParameter("password", password).getResultList();
+
+        Result result;
+
+        if (customers.size() == 1) {
+            session().put("customerId", "" + customers.get(0).getCustomerId());
+            result = redirect(routes.HomeController.getHello());
+        }
+        else {
+            result = redirect(routes.CustomerController.getAddCustomer());
+        }
+        return result;
+    }
+
+    public Result postLogOut()
+    {
+        session().put("customerId", null);
+
+        return ok(views.html.homepage.render());
+    }
+
+    public Result getSendEmail()
+    {
+        return ok(views.html.email.render());
+    }
+
+    public Result postSendEmail()
+    {
+        Date date = new Date();
+
+        Email.sendEmail(date);
+
+        return ok("Sent Email");
+
+
+    }
 }

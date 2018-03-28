@@ -31,6 +31,16 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
+        <div class="col-xs-3">
+            <form method="POST">
+                <h2>Existing Customer</h2>
+                Email <input type="text" name="email"><br>
+                Password <input type="text" name="password"><br>
+
+                @CSRF.formField
+                <input type="submit" value="Sign In">
+            </form>
+        </div>
     </div>
 </div>
 

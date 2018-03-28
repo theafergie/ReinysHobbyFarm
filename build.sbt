@@ -24,6 +24,8 @@ libraryDependencies ++= Seq(
 
 libraryDependencies += "org.webjars" % "chartjs" % "2.7.0"
 
+libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.11.301"
+
 // Testing libraries for dealing with CompletionStage...
 libraryDependencies += "org.assertj" % "assertj-core" % "3.6.2" % Test
 libraryDependencies += "org.awaitility" % "awaitility" % "2.0.0" % Test

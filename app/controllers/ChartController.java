@@ -1,5 +1,6 @@
 package controllers;
 
+import models.BestSellers;
 import models.InventoryCount;
 import models.SalesChart;
 import play.db.jpa.JPAApi;
@@ -40,9 +41,15 @@ public class ChartController extends Controller
                 " GROUP BY YEAR(orderDate)";
         List<SalesChart> salesCharts = jpaApi.em().createQuery(sqlSales, SalesChart.class).getResultList();
 
-        //String sqlBestSellers = "SELECT NEW BestSellers(od.productId, od.quantity"
+        String sqlBestSellers = "SELECT NEW BestSellers(p.productName, SUM(od.quantity * od.unitPrice)) " +
+                "FROM OrderDetail od " +
+                "JOIN Product p ON p.productId = od.productId " +
+                "GROUP BY p.productName " +
+                "ORDER BY SUM(od.quantity * od.unitPrice) DESC";
 
-        return ok(views.html.inventorychart.render(inventoryCounts, salesCharts));
+        List<BestSellers> bestSellers = jpaApi.em().createQuery(sqlBestSellers, BestSellers.class).setMaxResults(5).getResultList();
+
+        return ok(views.html.inventorychart.render(inventoryCounts, salesCharts, bestSellers));
     }
 
     /*@Transactional (readOnly = true)

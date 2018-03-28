@@ -1,4 +1,4 @@
-
+@import helper._
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,16 +21,23 @@
             <h3>REINY'S HOBBY FARM</h3>
             <h5>SMALL ACREAGE, HOBBY FARM LIVING</h5>
 
+
             <p>
 
                 <a href="@routes.CustomerController.getAddCustomer()">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
-                <span class="glyphicon glyphicon-search"></span>
 
-                <a href="@routes.ShopController.postCheckout()">
+                <a href="@routes.ShopController.getCheckout()">
                 <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
+
+
+
+            <a href="@routes.CustomerController.postLogOut()">
+                    <span class="glyphicon glyphicon-log-out"></span>
+
+            </a>
             </p>
 
 
@@ -185,7 +192,7 @@
 
             <a href="@routes.ProductController.getProduct(9:Integer)"><img src="/assets/images/mintjelly.jpg"alt="Mint Jelly" height="225" width="275"></a>
 
-            <a href="@routes.ProductController.getProduct(10:Integer)"><img src="/assets/images/hscropped.png"alt="HS" height="225" width="275"></a>
+            <a href="@routes.ProductController.getProduct(10:Integer)"><img src="/assets/images/new.jpg"alt="HS" height="225" width="225"></a>
 
             <a href="@routes.ProductController.getProduct(29:Integer)"><img src="/assets/images/watermelonjelly.jpg"alt="Watermelon Jelly" height="225" width="275"></a>
 
@@ -198,6 +205,8 @@
 
 
 </div>
+<script type="text/javascript" src="assets/javascripts/search.js" id="search"></script>
+
 
 </body>
 

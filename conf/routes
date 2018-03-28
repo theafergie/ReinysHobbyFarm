@@ -46,7 +46,7 @@ POST    /product/checkout           controllers.ShopController.postCheckout
 GET     /orderdetail                controllers.ShopController.getOrderDetail
 POST    /orderdetail                controllers.ShopController.postOrderDetail
 
-GET     /product/checkout           controllers.ShopController.postCheckout
+GET     /checkout                   controllers.ShopController.getCheckout
 POST    /checkout                   controllers.ShopController.postCheckout
 
 POST    /emptycart                  controllers.ShopController.postEmptyCart
@@ -56,6 +56,13 @@ POST    /product/purchase           controllers.ShopController.postPurchase
 
 GET     /addcustomer                controllers.CustomerController.getAddCustomer
 POST    /addcustomer                controllers.CustomerController.postAddCustomer
+
+GET     /login                      controllers.CustomerController.getLogIn
+POST    /login                      controllers.CustomerController.postLogIn
+POST    /logout                     controllers.CustomerController.postLogOut
+
+GET     /email                      controllers.CustomerController.getSendEmail
+POST    /email                      controllers.CustomerController.postSendEmail
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

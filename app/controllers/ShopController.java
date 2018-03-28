@@ -161,7 +161,26 @@ public class ShopController extends Controller
     {
         session().put("cart", null);
 
-        return ok("Cart emptied");
+        return ok(views.html.emptycart.render());
+    }
+
+    public Result getCheckout()
+    {
+        String json = session().get("cart");
+        List<CartItem> cartItems = null;
+
+        if(json == null)
+        {
+            //TODO error
+        }
+        else
+        {
+            cartItems = CartItem.fromJSON(json);
+
+        }
+
+
+        return ok(views.html.ordersummary.render(cartItems));
     }
 
 }

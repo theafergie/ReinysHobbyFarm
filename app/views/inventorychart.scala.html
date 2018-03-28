@@ -1,4 +1,4 @@
-@(inventoryCounts : List[InventoryCount], salesChart : List[SalesChart])
+@(inventoryCounts : List[InventoryCount], salesChart : List[SalesChart], bestSellers : List[BestSellers])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +41,15 @@
             </div>
         </div>
 
+    <div class="row">
+
+        <div class="col-xs-6">
+                <h1>BEST SELLERS</h1>
+                <canvas id="bestSellers"></canvas>
+        </div>
+
+        </div>
+
 
         <script type="text/javascript" src="assets/javascripts/inventorychart.js" id="inventoryChartData"
                 data-labels = "@for(i <- 0 to inventoryCounts.size() - 1){@inventoryCounts.get(i).getLabel()@if(i < inventoryCounts.size() - 1){,}}"
@@ -52,6 +61,10 @@
             data-data = "@for(i <- 0 to salesChart.size() - 1){@salesChart.get(i).getCount()@if(i < salesChart.size() - 1){,}}"
     ></script>
 
+    <script type="text/javascript" src="assets/javascripts/bestsellers.js" id="bestSellersChartData"
+            data-labels = "@for(i <- 0 to bestSellers.size() - 1){'@bestSellers.get(i).getLabel()'@if(i < bestSellers.size() - 1){,}}"
+            data-data = "@for(i <- 0 to bestSellers.size() - 1){@bestSellers.get(i).getCount()@if(i < bestSellers.size() - 1){,}}"
+    ></script>
 
 </div>
 

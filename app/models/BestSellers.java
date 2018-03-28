@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 @Entity
 public class BestSellers
@@ -10,12 +11,13 @@ public class BestSellers
     private int productId;
     private String label;
     private long count;
+    private BigDecimal total;
 
-    public BestSellers(int productId, String label, long count)
+    public BestSellers(String label, BigDecimal total)
     {
         this.productId = productId;
         this.label = label;
-        this.count = count;
+        this.total = total;
     }
 
     public String getLabel()
@@ -23,8 +25,8 @@ public class BestSellers
         return label;
     }
 
-    public long getCount()
+    public BigDecimal getCount()
     {
-        return count;
+        return total;
     }
 }
