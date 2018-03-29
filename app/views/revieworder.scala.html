@@ -1,4 +1,4 @@
-@(cartItem : List[CartItem])
+@(cartItem : List[CartItem], total : java.math.BigDecimal)
 @import helper._
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +12,26 @@
     <title>Order Review</title>
 </head>
 <body>
-    Review Order!
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+               <h2> Review Order!</h2>
 
-    @for(cartItem <- cartItem){
-    @cartItem.getProductName()<br>
-    Qty: @cartItem.getQuantity()<br>
-    Price: @cartItem.getUnitPrice()<br>
+                @for(cartItem <- cartItem){
+                @cartItem.getProductName()<br>
+                Qty: @cartItem.getQuantity()<br>
+                Price: @cartItem.getUnitPrice()<br>
 
-    <br>
-    }
+                <br>
+                }
+                Total: @total
+            <br>
+
+            <input type="submit" class="btn-info" value="Complete Order">
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

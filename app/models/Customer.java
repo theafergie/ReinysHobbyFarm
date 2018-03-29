@@ -16,7 +16,9 @@ public class Customer
     private boolean textAlert;
     private boolean emailAlert;
     private String email;
-    private String password;
+    private byte[] password;
+    private byte[] salt;
+
 
     public int getCustomerId()
     {
@@ -108,13 +110,23 @@ public class Customer
         this.email = email;
     }
 
-    public String getPassword()
+    public byte[] getPassword()
     {
         return password;
     }
 
-    public void setPassword(String password)
+    public void setPassword(byte[] password)
     {
         this.password = password;
+    }
+
+    public byte[] getSalt()
+    {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt)
+    {
+        this.salt = salt;
     }
 }

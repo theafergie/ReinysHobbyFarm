@@ -17,10 +17,10 @@
     @cartItem.getProductName()<br>
     Qty: @cartItem.getQuantity()<br>
     Price: @cartItem.getUnitPrice()<br>
-    Total: @cartItem.getTotal()<br>
 
 <br>
 }
+
 
 
 <form method="GET" action="@routes.HomeController.getHello()">
@@ -28,7 +28,7 @@
 </form>
 
 <td>
-    <form method="POST" action="purchase">
+    <form method="GET" action="@routes.ShopController.getTotal()">
         @CSRF.formField
         <input type="submit" class="btn-info" value="Checkout">
     </form>

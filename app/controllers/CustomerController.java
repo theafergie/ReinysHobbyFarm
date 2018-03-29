@@ -2,6 +2,7 @@ package controllers;
 
 import Services.Email;
 import models.Customer;
+import models.Password;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.data.FormFactory;
@@ -12,6 +13,7 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -66,6 +68,7 @@ public class CustomerController extends Controller
         String city = form.get("city");
         String phone = form.get("phone");
         String email = form.get("email");
+        String password = form.get("password");
 //        boolean textAlert =  new Boolean(form.get("textAlert"));
 //        boolean emailAlert = new Boolean(form.get("emalAlert"));
 
@@ -79,6 +82,20 @@ public class CustomerController extends Controller
 //        customer.setTextAlert(textAlert);
 //        customer.setEmailAlert(emailAlert);
 
+        if(password.trim().length() > 0)
+        {
+            try
+            {
+                byte[] salt = Password.getNewSalt();
+                byte[] hashedPassword = Password.hashPassword(password.toCharArray(), salt);
+                customer.setPassword(hashedPassword);
+                customer.setSalt(salt);
+            }
+            catch (Exception e)
+            {
+                    e.printStackTrace();
+            }
+        }
 
         jpaApi.em().persist(customer);
 
@@ -99,17 +116,27 @@ public class CustomerController extends Controller
         String email = form.get("email");
         String password = form.get("password");
 
-        String sql = "SELECT c FROM Customer c WHERE email = :email AND password = :password";
+       String sql = "SELECT c FROM Customer c WHERE email = :email";
 
-        List<Customer> customers = jpaApi.em().createQuery(sql, Customer.class)
+        List<Customer> customers = jpaApi.em()
+                .createQuery(sql, Customer.class)
                 .setParameter("email", email)
-                .setParameter("password", password).getResultList();
+                .getResultList();
 
-        Result result;
+        Result result = null;
 
-        if (customers.size() == 1) {
-            session().put("customerId", "" + customers.get(0).getCustomerId());
-            result = redirect(routes.HomeController.getHello());
+        if (customers.size() == 1)
+        {
+            Customer customer = customers.get(0);
+            byte[] hashedPassword = Password.hashPassword(password.toCharArray(), customer.getSalt());
+            byte[] savedPassword = customer.getPassword();
+
+            if(Arrays.equals(hashedPassword, savedPassword))
+            {
+                session().put("customerId", "" + customers.get(0).getCustomerId());
+                result = redirect(routes.HomeController.getHello());
+            }
+
         }
         else {
             result = redirect(routes.CustomerController.getAddCustomer());

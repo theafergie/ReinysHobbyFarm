@@ -40,6 +40,10 @@ public class ShopController extends Controller
                 "od.customerId, od.categoryId, od.quantity, od.orderId, od.productId, od.unitPrice) " +
                 "FROM CartItem od", CartItem.class).getResultList();
 
+        //BigDecimal total = getTotal(cartItems);
+
+
+
         return ok(views.html.ordersummary.render(cartItems));
     }
 
@@ -77,6 +81,8 @@ public class ShopController extends Controller
 
         String json = session().get("cart");
 
+        BigDecimal total = new BigDecimal("0.00");
+
         if(json == null)
         {
             cartItems = new ArrayList<>();
@@ -84,12 +90,17 @@ public class ShopController extends Controller
         else
         {
             cartItems = CartItem.fromJSON(json);
+           // total= getTotal(cartItems);
+
         }
 
         for(Product product : products)
         {
             String key = "" + product.getProductId();
             String value = form.get(key);
+
+
+
 
             if(value != null)
             {
@@ -168,6 +179,7 @@ public class ShopController extends Controller
     {
         String json = session().get("cart");
         List<CartItem> cartItems = null;
+        BigDecimal total = new BigDecimal("0.00");
 
         if(json == null)
         {
@@ -176,6 +188,7 @@ public class ShopController extends Controller
         else
         {
             cartItems = CartItem.fromJSON(json);
+            //total= getTotal(cartItems);
 
         }
 
@@ -183,24 +196,51 @@ public class ShopController extends Controller
         return ok(views.html.ordersummary.render(cartItems));
     }
 
-    public Result getTotal()
+   /* public BigDecimal getTotal(List<CartItem> cartItems)
     {
         String json = session().get("cart");
-        List<CartItem> cartItems = null;
+        BigDecimal total = new BigDecimal("0.00");
 
         if(json == null)
         {
-            //TODO error
+            //
         }
         else
         {
-            cartItems = CartItem.fromJSON(json);
-            String sql = "SELECT NEW CartItem (quantity * unitPrice) FROM CartItem";
-            List<CartItem> total = jpaApi.em().createQuery(sql, CartItem.class).getResultList();
-
+            for(CartItem cartItem : cartItems)
+            {
+                BigDecimal quantity = new BigDecimal(cartItem.getQuantity());
+                total = total.add(cartItem.getUnitPrice().multiply(quantity));
+            }
         }
 
-        return ok(views.html.ordersummary.render(cartItems));
-    }
+
+
+        return total;
+    }*/
+
+   public Result getTotal()
+   {
+       String json = session().get("cart");
+       BigDecimal total = new BigDecimal("0.00");
+       List<CartItem> cartItems = null;
+
+       if (json == null) {
+           //
+       }
+       else
+           {
+               cartItems = CartItem.fromJSON(json);
+
+               for (CartItem cartItem : cartItems) {
+               BigDecimal quantity = new BigDecimal(cartItem.getQuantity());
+               total = total.add(cartItem.getUnitPrice().multiply(quantity));
+           }
+       }
+       return ok(views.html.revieworder.render(cartItems, total));
+
+
+   }
+
 
 }
