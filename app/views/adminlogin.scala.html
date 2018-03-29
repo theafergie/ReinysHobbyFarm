@@ -1,0 +1,17 @@
+@import helper._
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+</head>
+<body>
+<form method="POST">
+    <h2>Enter Admin Pin</h2>
+    Pin <input type="text" name="password"><br>
+
+    @CSRF.formField
+    <input type="submit" value="Sign In">
+</form>
+</body>
+</html>

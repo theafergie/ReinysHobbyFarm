@@ -1,4 +1,5 @@
 @import helper._
+@(customer : Customer)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,21 +24,38 @@
 
 
             <p>
+            <form method="post" action="logout">
 
-                <a href="@routes.CustomerController.getAddCustomer()">
+            @CSRF.formField
+
+
+            <a href="@routes.CustomerController.getLogIn()">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
 
+            &nbsp;
+            &nbsp;
+            &nbsp;
                 <a href="@routes.ShopController.getCheckout()">
                 <span class="glyphicon glyphicon-shopping-cart"></span>
                 </a>
 
+            &nbsp;
+            &nbsp;
 
-
-            <a href="@routes.CustomerController.postLogOut()">
+            <button type="submit" class="btn btn-link">
                     <span class="glyphicon glyphicon-log-out"></span>
+                </button>
 
-            </a>
+            @if(customer != null) {
+            Welcome, @customer.getFirstName()!
+            } else {
+            Welcome!
+            }
+
+            </form>
+
+
             </p>
 
 
@@ -130,7 +148,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a href="@routes.ChartController.getInventoryChart()"> ADMINISTRATOR</a>
+                        <a href="@routes.AdminController.getLogIn()"> ADMINISTRATOR</a>
                     </h4>
                 </div>
             </div>

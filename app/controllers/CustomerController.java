@@ -117,11 +117,13 @@ public class CustomerController extends Controller
         return result;
     }
 
+   @Transactional
     public Result postLogOut()
     {
         session().put("customerId", null);
 
-        return ok(views.html.homepage.render());
+
+        return redirect(routes.HomeController.getHello());
     }
 
     public Result getSendEmail()
@@ -139,4 +141,5 @@ public class CustomerController extends Controller
 
 
     }
+
 }

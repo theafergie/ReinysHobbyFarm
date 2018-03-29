@@ -132,6 +132,7 @@ public class ShopController extends Controller
         {
             cartItems = CartItem.fromJSON(json);
 
+            //TODO customerId needs to set to logged in customer
             OrderHeader orderHeader = new OrderHeader();
             orderHeader.setCustomerId(7);
             orderHeader.setOrderDate(new Date());
@@ -153,8 +154,7 @@ public class ShopController extends Controller
             session().put("cart", null);
 
         }
-        //TODO temporary
-        return ok("Sold!");
+        return ok("sold!");
     }
 
     public Result postEmptyCart()
@@ -179,6 +179,26 @@ public class ShopController extends Controller
 
         }
 
+
+        return ok(views.html.ordersummary.render(cartItems));
+    }
+
+    public Result getTotal()
+    {
+        String json = session().get("cart");
+        List<CartItem> cartItems = null;
+
+        if(json == null)
+        {
+            //TODO error
+        }
+        else
+        {
+            cartItems = CartItem.fromJSON(json);
+            String sql = "SELECT NEW CartItem (quantity * unitPrice) FROM CartItem";
+            List<CartItem> total = jpaApi.em().createQuery(sql, CartItem.class).getResultList();
+
+        }
 
         return ok(views.html.ordersummary.render(cartItems));
     }

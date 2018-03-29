@@ -17,10 +17,13 @@
     @cartItem.getProductName()<br>
     Qty: @cartItem.getQuantity()<br>
     Price: @cartItem.getUnitPrice()<br>
+    Total: @cartItem.getTotal()<br>
+
 <br>
 }
 
-<form method="GET" action="@routes.HomeController.getOrder()">
+
+<form method="GET" action="@routes.HomeController.getHello()">
     <input type="submit" class="btn-info" value="Continue Shopping">
 </form>
 

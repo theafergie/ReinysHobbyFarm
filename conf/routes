@@ -59,10 +59,14 @@ POST    /addcustomer                controllers.CustomerController.postAddCustom
 
 GET     /login                      controllers.CustomerController.getLogIn
 POST    /login                      controllers.CustomerController.postLogIn
+
 POST    /logout                     controllers.CustomerController.postLogOut
 
 GET     /email                      controllers.CustomerController.getSendEmail
 POST    /email                      controllers.CustomerController.postSendEmail
+
+GET     /admin                      controllers.AdminController.getLogIn
+POST    /admin                      controllers.AdminController.postLogIn
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

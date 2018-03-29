@@ -1,0 +1,25 @@
+@(cartItem : List[CartItem])
+@import helper._
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <title>Order Review</title>
+</head>
+<body>
+    Review Order!
+
+    @for(cartItem <- cartItem){
+    @cartItem.getProductName()<br>
+    Qty: @cartItem.getQuantity()<br>
+    Price: @cartItem.getUnitPrice()<br>
+
+    <br>
+    }
+</body>
+</html>

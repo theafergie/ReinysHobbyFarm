@@ -26,9 +26,24 @@ public class HomeController extends Controller
         this.jpaApi = jpaApi;
     }
 
+    @Transactional(readOnly = true)
     public Result getHello()
     {
-        return ok(views.html.homepage.render());
+
+        String customerIdSession = session().get("customerId");
+
+        Customer customer = null;
+
+        if(customerIdSession != null)
+        {
+            Integer customerId = Integer.parseInt(customerIdSession);
+            String sql = "SELECT c FROM Customer c WHERE customerId = :customerId";
+
+            customer = jpaApi.em().createQuery(sql, Customer.class).setParameter("customerId", customerId).getSingleResult();
+        }
+
+
+        return ok(views.html.homepage.render(customer));
     }
 
     public Result getRequest()

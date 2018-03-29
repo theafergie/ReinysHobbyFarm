@@ -17,6 +17,7 @@ public class CartItem
     private int quantity;
     private BigDecimal unitPrice;
     private int categortyId;
+    private BigDecimal total;
 
     public int getProductId()
     {
@@ -100,5 +101,15 @@ public class CartItem
         }
 
         return cartItems;
+    }
+
+    public BigDecimal getTotal()
+    {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total)
+    {
+        this.total = total;
     }
 }
