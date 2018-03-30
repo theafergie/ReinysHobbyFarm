@@ -16,7 +16,7 @@ public class AdminController extends Controller
     @Transactional
     public Result postLogIn()
     {
-        Integer pin = 0734;
+        Integer pin = 1234;
 
         return redirect(routes.ChartController.getInventoryChart());
     }

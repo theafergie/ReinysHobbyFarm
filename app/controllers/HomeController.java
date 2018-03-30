@@ -65,6 +65,25 @@ public class HomeController extends Controller
 
         String checked = form.get("addMe");
 
+        String checkedText = form.get("textAlert");
+
+        String checkedEmail = form.get("emailAlert");
+
+
+        if (checkedText != null) {
+            Customer customer = new Customer();
+            boolean textAlert = true;
+            customer.setTextAlert(textAlert);
+
+        }
+
+        if (checkedEmail != null) {
+            Customer customer = new Customer();
+            boolean emailAlert = true;
+            customer.setEmailAlert(emailAlert);
+
+        }
+
         if (checked != null) {
             //create object to save
             Customer customer = new Customer();
@@ -138,4 +157,9 @@ public class HomeController extends Controller
 
 
 
+    public Result getTestView()
+    {
+        Customer customer = new Customer();
+        return ok(views.html.testview.render(customer));
+    }
 }

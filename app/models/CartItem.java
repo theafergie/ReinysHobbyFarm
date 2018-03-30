@@ -105,6 +105,7 @@ public class CartItem
 
     public BigDecimal getTotal()
     {
+
         return total;
     }
 

@@ -50,6 +50,7 @@ public class CustomerController extends Controller
 
         String checkedEmail = form.get("emailAlert");
 
+
         if (checkedText != null) {
             boolean textAlert = true;
             customer.setTextAlert(textAlert);
@@ -159,9 +160,11 @@ public class CustomerController extends Controller
     {
         Date date = new Date();
 
-        Email.sendEmail(date);
+        String json = session().get("cart");
+        List<CartItem> cartItem = CartItem.fromJSON(json);
+        Email.sendEmail(date, cartItem);
 
-        return ok("Sent Email");
+        return ok(views.html.completeorder.render());
 
 
     }

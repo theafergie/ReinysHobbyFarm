@@ -7,21 +7,40 @@ import com.amazonaws.services.simpleemail.model.*;
 import models.CartItem;
 
 import java.util.Date;
+import java.util.List;
 
 public class Email
 {
-    public static void sendEmail(Date date)
+    public static void sendEmail(Date date, List<CartItem> cartItems)
     {
         String sender = "ashleyfergusond@gmail.com";
         String receiver = "ashleyfergusond@gmail.com";
 
         String subject = "Thank you for your order!";
 
-        String htmlBody = "<h1>Order Date</h1><p>" + date + "</p>" ; //+
-               // "<p> Order Summary </p>" +
-                //CartItem.fromJSON("cart");
+        String htmlBody = "<h1>Order Confirmation</h1><p>" + date + "</p>";
 
-        String textBody = "Ordered " + date ;
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("<ul>");
+        for(CartItem cartItem : cartItems)
+        {
+            sb.append("<li>");
+            sb.append(cartItem.getProductName());
+                sb.append("<ul>");
+                    sb.append("<li>");
+                    sb.append("Quantity: ");
+                    sb.append(cartItem.getQuantity());
+                    sb.append("</li>");
+                sb.append("</ul>");
+            sb.append("</li>");
+
+        }
+        sb.append("</ul>");
+
+        htmlBody += sb.toString();
+
+        String textBody = "Order Confirmation " + date ;
 
         try
         {

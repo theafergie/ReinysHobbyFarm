@@ -1,5 +1,6 @@
 package controllers;
 
+import Services.Email;
 import models.*;
 import org.hibernate.criterion.Order;
 import play.data.DynamicForm;
@@ -40,7 +41,6 @@ public class ShopController extends Controller
                 "od.customerId, od.categoryId, od.quantity, od.orderId, od.productId, od.unitPrice) " +
                 "FROM CartItem od", CartItem.class).getResultList();
 
-        //BigDecimal total = getTotal(cartItems);
 
 
 
@@ -50,7 +50,6 @@ public class ShopController extends Controller
     @Transactional(readOnly = true)
     public Result postOrderDetail()
     {
-        //OrderDetail orderDetail = new OrderDetail();
 
         DynamicForm form = formFactory.form().bindFromRequest();
 
@@ -90,7 +89,6 @@ public class ShopController extends Controller
         else
         {
             cartItems = CartItem.fromJSON(json);
-           // total= getTotal(cartItems);
 
         }
 
@@ -143,9 +141,9 @@ public class ShopController extends Controller
         {
             cartItems = CartItem.fromJSON(json);
 
-            //TODO customerId needs to set to logged in customer
             OrderHeader orderHeader = new OrderHeader();
-            orderHeader.setCustomerId(7);
+            int customerId = Integer.parseInt(session().get("customerId"));
+            orderHeader.setCustomerId(customerId);
             orderHeader.setOrderDate(new Date());
             jpaApi.em().persist(orderHeader);
 
@@ -162,17 +160,24 @@ public class ShopController extends Controller
                 jpaApi.em().persist(orderDetail);
             }
 
-            session().put("cart", null);
+            Date date = new Date();
 
+            Email.sendEmail(date, cartItems);
+
+
+
+            //for()
+            cartItems = CartItem.fromJSON(json);
+            session().remove("cart");
         }
+
         //TODO finish purchasing process and send email
-        return ok("sold!");
+        return ok(views.html.completeorder.render());
     }
 
     public Result postEmptyCart()
     {
-        session().put("cart", null);
-
+        session().remove("cart");
         return ok(views.html.emptycart.render());
     }
 
