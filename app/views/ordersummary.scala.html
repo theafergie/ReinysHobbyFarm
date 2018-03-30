@@ -24,18 +24,18 @@
 
 
 <form method="GET" action="@routes.HomeController.getHello()">
-    <input type="submit" class="btn-info" value="Continue Shopping">
+    <input type="submit" class="btn-info" value="CONTINUE SHOPPING">
 </form>
 
 <td>
     <form method="GET" action="@routes.ShopController.getTotal()">
         @CSRF.formField
-        <input type="submit" class="btn-info" value="Checkout">
+        <input type="submit" class="btn-info" value="CHECKOUT">
     </form>
 
     <form method="POST" action="emptycart">
         @CSRF.formField
-        <input type="submit" class="btn-info" value="Empty Cart">
+        <input type="submit" class="btn-info" value="EMPTY CART">
     </form>
 </td>
 </body>

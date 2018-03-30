@@ -165,6 +165,7 @@ public class ShopController extends Controller
             session().put("cart", null);
 
         }
+        //TODO finish purchasing process and send email
         return ok("sold!");
     }
 
@@ -179,21 +180,23 @@ public class ShopController extends Controller
     {
         String json = session().get("cart");
         List<CartItem> cartItems = null;
-        BigDecimal total = new BigDecimal("0.00");
 
-        if(json == null)
+        Result result;
+        if(json != null)
         {
-            //TODO error
+            cartItems = CartItem.fromJSON(json);
+            result = ok(views.html.ordersummary.render(cartItems));
+
+
         }
         else
         {
-            cartItems = CartItem.fromJSON(json);
-            //total= getTotal(cartItems);
+            result = ok(views.html.emptycart.render());
 
         }
 
+        return result;
 
-        return ok(views.html.ordersummary.render(cartItems));
     }
 
    /* public BigDecimal getTotal(List<CartItem> cartItems)
@@ -225,17 +228,19 @@ public class ShopController extends Controller
        BigDecimal total = new BigDecimal("0.00");
        List<CartItem> cartItems = null;
 
-       if (json == null) {
-           //
+       if (json == null)
+       {
+           return ok(views.html.emptycart.render());
        }
        else
-           {
+       {
                cartItems = CartItem.fromJSON(json);
 
-               for (CartItem cartItem : cartItems) {
+               for (CartItem cartItem : cartItems)
+               {
                BigDecimal quantity = new BigDecimal(cartItem.getQuantity());
                total = total.add(cartItem.getUnitPrice().multiply(quantity));
-           }
+               }
        }
        return ok(views.html.revieworder.render(cartItems, total));
 

@@ -27,7 +27,11 @@
                 Total: @total
             <br>
 
-            <input type="submit" class="btn-info" value="Complete Order">
+            <form method="POST" action="@routes.ShopController.postPurchase()">
+                @CSRF.formField
+
+                <input type="submit" class="btn-info" value="PROCEED TO CHECKOUT">
+            </form>
         </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 package controllers;
 
 import Services.Email;
+import models.CartItem;
 import models.Customer;
 import models.Password;
 import play.data.DynamicForm;
@@ -13,6 +14,7 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -82,18 +84,14 @@ public class CustomerController extends Controller
 //        customer.setTextAlert(textAlert);
 //        customer.setEmailAlert(emailAlert);
 
-        if(password.trim().length() > 0)
-        {
-            try
-            {
+        if (password.trim().length() > 0) {
+            try {
                 byte[] salt = Password.getNewSalt();
                 byte[] hashedPassword = Password.hashPassword(password.toCharArray(), salt);
                 customer.setPassword(hashedPassword);
                 customer.setSalt(salt);
-            }
-            catch (Exception e)
-            {
-                    e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
@@ -116,7 +114,7 @@ public class CustomerController extends Controller
         String email = form.get("email");
         String password = form.get("password");
 
-       String sql = "SELECT c FROM Customer c WHERE email = :email";
+        String sql = "SELECT c FROM Customer c WHERE email = :email";
 
         List<Customer> customers = jpaApi.em()
                 .createQuery(sql, Customer.class)
@@ -125,14 +123,12 @@ public class CustomerController extends Controller
 
         Result result = null;
 
-        if (customers.size() == 1)
-        {
+        if (customers.size() == 1) {
             Customer customer = customers.get(0);
             byte[] hashedPassword = Password.hashPassword(password.toCharArray(), customer.getSalt());
             byte[] savedPassword = customer.getPassword();
 
-            if(Arrays.equals(hashedPassword, savedPassword))
-            {
+            if (Arrays.equals(hashedPassword, savedPassword)) {
                 session().put("customerId", "" + customers.get(0).getCustomerId());
                 result = redirect(routes.HomeController.getHello());
             }
@@ -144,7 +140,7 @@ public class CustomerController extends Controller
         return result;
     }
 
-   @Transactional
+    @Transactional
     public Result postLogOut()
     {
         session().put("customerId", null);
@@ -155,6 +151,7 @@ public class CustomerController extends Controller
 
     public Result getSendEmail()
     {
+
         return ok(views.html.email.render());
     }
 

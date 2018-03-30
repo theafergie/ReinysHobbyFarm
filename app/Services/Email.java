@@ -4,6 +4,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
 import com.amazonaws.services.simpleemail.model.*;
+import models.CartItem;
 
 import java.util.Date;
 
@@ -14,9 +15,11 @@ public class Email
         String sender = "ashleyfergusond@gmail.com";
         String receiver = "ashleyfergusond@gmail.com";
 
-        String subject = "Your order confirmation!";
+        String subject = "Thank you for your order!";
 
-        String htmlBody = "<h1>Order Date</h1><p>" + date + "</p>";
+        String htmlBody = "<h1>Order Date</h1><p>" + date + "</p>" ; //+
+               // "<p> Order Summary </p>" +
+                //CartItem.fromJSON("cart");
 
         String textBody = "Ordered " + date ;
 
