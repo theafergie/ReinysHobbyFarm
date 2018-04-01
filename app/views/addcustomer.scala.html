@@ -9,39 +9,111 @@
     <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
 
     <title>Add Customer</title>
-    <a href="@routes.HomeController.getHello()"><img src="/assets/images/transparent-copy.png" alt="Rooster" height="250" /></a>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-3">
-            <form method="POST">
-                <h2>New Customer</h2>
-                First Name <input type="text" name="firstName"><br>
-                Last Name <input type="text" name="lastName"><br>
-                Address <input type="text" name="address"><br>
-                City <input type="text" name="city"><br>
-                Phone Number <input type="text" name="phone"><br>
-                Email <input type="text" name="email"><br>
-                <p>Would you like a text alert or email alert when your order is in stock?</p>
-                <input type="checkbox" name="textAlert" value="textAlert" />Text<br>
-                <input type="checkbox" name="emailAlert" value="emailAlert"/>Email<br>
-                Create Password <input type="password" name="password"><br>
+        <div class="col-xs-8">
 
+            <h2>&nbsp;&nbsp;&nbsp;&nbsp;New Customer</h2>
+
+            <form method="POST" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">First Name:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="firstName" placeholder="Enter First Name">
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Last Name:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Address:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="address" placeholder="Enter Address">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">City:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="city" placeholder="Enter City">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Phone Number:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="phone" placeholder="Enter Phone Number">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Email:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="email" placeholder="Enter Email Address">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <p>Would you like a text alert or email alert when your order is in stock?</p>
+                            <label><input type="checkbox" name="textAlert" value="textAlert">Text</label> &nbsp;&nbsp;
+                            <label><input type="checkbox"name="emailAlert" value="emailAlert"/>Email</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Create Password:</label>
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                    </div>
+                </div>
 
                 @CSRF.formField
-                <input type="submit" value="Submit">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                       <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
+
             </form>
         </div>
-        <div class="col-xs-3">
-            <form method="POST">
-                <h2>Existing Customer</h2>
-                Email <input type="text" name="email"><br>
-                Password <input type="password" name="password"><br>
+
+        <div class="col-sm-4">
+            <h2>Existing Customer</h2>
+            <form method="POST" class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Email:</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" name="email" placeholder="Enter Email Address">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Password:</label>
+                    <div class="col-sm-12">
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                    </div>
+                </div>
 
                 @CSRF.formField
-                <input type="submit" value="Sign In">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-default">Log In</button>
+                    </div>
+                </div>
+
             </form>
+            <a href="@routes.HomeController.getHello()"><img src="/assets/images/transparent-copy.png" alt="Rooster" height="250" /></a>
+
         </div>
     </div>
 </div>

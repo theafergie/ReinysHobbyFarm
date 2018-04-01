@@ -7,11 +7,8 @@ import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.homepage;
 
 import javax.inject.Inject;
-import javax.persistence.criteria.Order;
-import java.math.BigDecimal;
 import java.util.List;
 
 public class HomeController extends Controller
@@ -61,7 +58,6 @@ public class HomeController extends Controller
         Request request = new Request();
         DynamicForm form = formFactory.form().bindFromRequest();
 
-        Result result;
 
         String checked = form.get("addMe");
 
@@ -136,7 +132,7 @@ public class HomeController extends Controller
         search = "%" + search + "%";
 
         List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, " +
-                "p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+                "p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "WHERE p.productName " +
                 "LIKE :search", ProductDetail.class).setParameter("search", search).getResultList();
@@ -147,7 +143,6 @@ public class HomeController extends Controller
     public Result postOrder()
     {
         OrderDetail order = new OrderDetail();
-        DynamicForm form = formFactory.form().bindFromRequest();
 
          jpaApi.em().persist(order);
 
@@ -159,7 +154,6 @@ public class HomeController extends Controller
 
     public Result getTestView()
     {
-        Customer customer = new Customer();
-        return ok(views.html.testview.render(customer));
+        return ok(views.html.testview.render());
     }
 }

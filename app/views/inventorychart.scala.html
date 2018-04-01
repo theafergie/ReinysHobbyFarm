@@ -12,45 +12,40 @@
     <title>Inventory Chart</title>
 
 </head>
-<body>
 
-<div class="container-fluid">
+<div class="container">
 
-
-        <div class="row">
-            <div class="col-xs-6">
-                <div id="canvas-holder" style="width:40%">
-                    <h1>INVENTORY BY CATEGORY</h1>
-                    <canvas id="inventoryChart"></canvas>
-                </div>
-            </div>
-                <div class="col-xs-6">
-                    <div class="row">
-
-
-                    </div>
-                </div>
-            <div class="col-xs-6">
-                <h1>SALES BY YEAR</h1>
-                <canvas id="salesChart"></canvas>
-            </div>
-            <div class="col-xs-6">
-                <div class="row">
-
-                </div>
-            </div>
-        </div>
 
     <div class="row">
 
         <div class="col-xs-6">
-                <h1>BEST SELLERS</h1>
-                <canvas id="bestSellers"></canvas>
+            <center><h2>BEST SELLERS</h2></center>
+            <canvas id="bestSellers"></canvas>
         </div>
 
+
+
+
+            <div class="col-xs-6">
+                <center><h2>SALES BY YEAR</h2></center>
+                <canvas id="salesChart"></canvas>
+            </div>
+
+    </div>
+
+
+
+<div class="row">
+    <div class="col-xs-3"></div>
+
+    <div class="col-xs-6">
+        <div id="canvas-holder" style="width:5%">
+            <center><h2>INVENTORY BY CATEGORY</h2></center>
+            <canvas id="inventoryChart"></canvas>
         </div>
+    </div>
 
-
+</div>
         <script type="text/javascript" src="assets/javascripts/inventorychart.js" id="inventoryChartData"
                 data-labels = "@for(i <- 0 to inventoryCounts.size() - 1){@inventoryCounts.get(i).getLabel()@if(i < inventoryCounts.size() - 1){,}}"
                 data-data = "@for(i <- 0 to inventoryCounts.size() - 1){@inventoryCounts.get(i).getCount()@if(i < inventoryCounts.size() - 1){,}}"
@@ -65,7 +60,6 @@
             data-labels = "@for(i <- 0 to bestSellers.size() - 1){'@bestSellers.get(i).getLabel()'@if(i < bestSellers.size() - 1){,}}"
             data-data = "@for(i <- 0 to bestSellers.size() - 1){@bestSellers.get(i).getCount()@if(i < bestSellers.size() - 1){,}}"
     ></script>
-
 </div>
 
 </body>

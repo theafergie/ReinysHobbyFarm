@@ -23,8 +23,9 @@ public class ProductDetail
     private int categoryId;
     private int seasonId;
     private byte[] picture;
+    private int quantityInStock;
 
-    public ProductDetail(int productId, String productName, BigDecimal price, String ingredients, String size, int categoryId, int seasonId)
+    public ProductDetail(int productId, String productName, BigDecimal price, String ingredients, String size, int categoryId, int seasonId, int quantityInStock)
     {
         this.productId = productId;
         this.productName = productName;
@@ -32,7 +33,7 @@ public class ProductDetail
         this.size = size;
         this.price = price;
         this.seasonId = seasonId;
-
+        this.quantityInStock = quantityInStock;
     }
 
     public int getProductId()
@@ -75,4 +76,8 @@ public class ProductDetail
         return picture;
     }
 
+    public int getQuantityInStock()
+    {
+        return quantityInStock;
+    }
 }

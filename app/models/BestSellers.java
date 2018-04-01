@@ -15,7 +15,6 @@ public class BestSellers
 
     public BestSellers(String label, BigDecimal total)
     {
-        this.productId = productId;
         this.label = label;
         this.total = total;
     }

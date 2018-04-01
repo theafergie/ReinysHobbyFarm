@@ -2,7 +2,6 @@ package controllers;
 
 import Services.Email;
 import models.*;
-import org.hibernate.criterion.Order;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
@@ -11,7 +10,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,18 +29,10 @@ public class ShopController extends Controller
 
     public Result getOrderDetail()
     {
-       /* OrderDetail orderDetail = new OrderDetail();
-        List<OrderDetail> orderDetails = jpaApi.em().createQuery("SELECT NEW OrderDetail (od.orderProductId, " +
-                "od.customerId, od.categoryId, od.quantity, od.orderId, od.productId, od.unitPrice) " +
-                "FROM OrderDetail od", OrderDetail.class).getResultList(); */
-
         CartItem cartItem = new CartItem();
         List<CartItem> cartItems = jpaApi.em().createQuery("SELECT NEW CartItem (od.orderProductId, " +
                 "od.customerId, od.categoryId, od.quantity, od.orderId, od.productId, od.unitPrice) " +
                 "FROM CartItem od", CartItem.class).getResultList();
-
-
-
 
         return ok(views.html.ordersummary.render(cartItems));
     }
@@ -53,7 +43,6 @@ public class ShopController extends Controller
 
         DynamicForm form = formFactory.form().bindFromRequest();
 
-        Result result;
 
         int orderProductId = new Integer(form.get("orderProductId"));
         int customerId = new Integer(form.get("customerId"));
@@ -79,8 +68,6 @@ public class ShopController extends Controller
         List<CartItem> cartItems;
 
         String json = session().get("cart");
-
-        BigDecimal total = new BigDecimal("0.00");
 
         if(json == null)
         {
@@ -135,7 +122,7 @@ public class ShopController extends Controller
 
         if(json == null)
         {
-            //TODO error
+            return ok(views.html.emptycart.render());
         }
         else
         {
@@ -171,7 +158,6 @@ public class ShopController extends Controller
             session().remove("cart");
         }
 
-        //TODO finish purchasing process and send email
         return ok(views.html.completeorder.render());
     }
 
@@ -184,7 +170,7 @@ public class ShopController extends Controller
     public Result getCheckout()
     {
         String json = session().get("cart");
-        List<CartItem> cartItems = null;
+        List<CartItem> cartItems;
 
         Result result;
         if(json != null)
@@ -231,7 +217,7 @@ public class ShopController extends Controller
    {
        String json = session().get("cart");
        BigDecimal total = new BigDecimal("0.00");
-       List<CartItem> cartItems = null;
+       List<CartItem> cartItems;
 
        if (json == null)
        {

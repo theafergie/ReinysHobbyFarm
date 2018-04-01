@@ -5,7 +5,6 @@ import models.CartItem;
 import models.Customer;
 import models.Password;
 import play.data.DynamicForm;
-import play.data.Form;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -14,12 +13,10 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.hibernate.loader.Loader.SELECT;
 
 public class CustomerController extends Controller
 {
@@ -44,8 +41,6 @@ public class CustomerController extends Controller
         Customer customer = new Customer();
         DynamicForm form = formFactory.form().bindFromRequest();
 
-        Result result;
-
         String checkedText = form.get("textAlert");
 
         String checkedEmail = form.get("emailAlert");
@@ -54,14 +49,12 @@ public class CustomerController extends Controller
         if (checkedText != null) {
             boolean textAlert = true;
             customer.setTextAlert(textAlert);
-            //jpaApi.em().persist(customer);
 
         }
 
         if (checkedEmail != null) {
             boolean emailAlert = true;
             customer.setEmailAlert(emailAlert);
-            // jpaApi.em().persist(customer);
 
         }
 
@@ -72,8 +65,6 @@ public class CustomerController extends Controller
         String phone = form.get("phone");
         String email = form.get("email");
         String password = form.get("password");
-//        boolean textAlert =  new Boolean(form.get("textAlert"));
-//        boolean emailAlert = new Boolean(form.get("emalAlert"));
 
 
         customer.setFirstName(firstName);
@@ -82,8 +73,6 @@ public class CustomerController extends Controller
         customer.setCity(city);
         customer.setPhone(phone);
         customer.setEmail(email);
-//        customer.setTextAlert(textAlert);
-//        customer.setEmailAlert(emailAlert);
 
         if (password.trim().length() > 0) {
             try {

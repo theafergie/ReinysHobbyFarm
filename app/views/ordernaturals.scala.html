@@ -10,15 +10,17 @@
     <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
 
     <title>RHF Naturals</title>
-    <a href="@routes.HomeController.getHello()"><img src="/assets/images/transparent-copy.png" alt="Rooster" height="225" /></a>
 
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-6">
 
-            <h2>Reiny's Hobby Farm Naturals</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+
+            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reiny's Hobby Farm Naturals</h2>
 
             <input class="form-control" id="myInput" type="text" placeholder="Search..">
             <div id="myDIV">
@@ -26,14 +28,31 @@
                 <form method="POST" action="checkout">
                     @CSRF.formField
 
-                    <table class="table table-hover" border="1">
-
+                    <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>VARIETY</th>
+                            <th>SIZE</th>
+                            <th>IN-STOCK</th>
+                            <th>PRICE</th>
+                            <th>ORDER QTY</th>
+                        </tr>
+                    </thead>
                     <tbody>
                     @for(product <- products){
                     <tr>
                         <td><a href="product/@product.getProductId()"> @product.getProductName()</a></td>
                         <td>@product.getSize()</td>
+
+                        <td> @if(product.getQuantityInStock() == 0){
+                                ☼
+                        }else{
+                            @product.getQuantityInStock()
+                        }
+                        </td>
+
                         <td>@product.getPrice()</td>
+
 
                         <td>Qty.
                             <select name="@product.getProductId()">
@@ -60,17 +79,34 @@
                     </tbody>
                 </table>
 
-                    <input type="submit" class="btn-info" value="Add To Cart">
-                    <input type="submit" class="btn-info" value="GO TO CART">
+                    <div class="col-xs-6"></div>
+                    ☼ = PREORDER
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <td><input type="submit" class="btn btn-primary" value="ADD TO CART"></td>
 
 
                 </form>
             </div>
         </div>
+        <div class="col-xs-2">
+
+            <a href="@routes.HomeController.getHello()"><img src="/assets/images/transparent-copy.png" alt="Rooster" height="225" /></a>
+
+            <form method="POST" action="checkout">
+                @CSRF.formField
+
+                <p>&nbsp;</p>
+            <input type="submit" class="btn btn-primary" value="GO TO CART">
+            </form>
+        </div>
+
     </div>
 </div>
-<script type="text/javascript" src="assets/javascripts/search.js" id="search"></script>
 
+
+            <script type="text/javascript" src="assets/javascripts/search.js" id="search"></script>
 
 </body>
 </html>

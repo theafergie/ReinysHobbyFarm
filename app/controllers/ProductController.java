@@ -1,6 +1,5 @@
 package controllers;
 
-import models.OrderDetail;
 import models.Product;
 import models.ProductDetail;
 import play.data.DynamicForm;
@@ -9,12 +8,8 @@ import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.product;
 
 import javax.inject.Inject;
-import javax.persistence.criteria.Order;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductController extends Controller
@@ -50,7 +45,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getJams()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId)" +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock)" +
                 "FROM Product p WHERE productName LIKE '%jam' ORDER BY productName", ProductDetail.class).getResultList();
 
         return ok(views.html.products.render(products));
@@ -59,7 +54,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getJellies()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId)" +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock)" +
                 "FROM Product p WHERE productName LIKE '%jelly' ORDER BY productName", ProductDetail.class).getResultList();
 
         return ok(views.html.products.render(products));
@@ -68,7 +63,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getButters()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId)" +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock)" +
                 "FROM Product p WHERE productName LIKE '%butter' ORDER BY productName", ProductDetail.class).getResultList();
 
         return ok(views.html.products.render(products));
@@ -77,7 +72,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getSprays()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName " +
@@ -90,7 +85,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getRollOns()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName " +
@@ -103,7 +98,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getInStock()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName LIKE 'Jam' AND p.quantityInStock > 0 " +
@@ -117,7 +112,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getVegan()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "WHERE vegan = true " +
                 "ORDER BY productName", ProductDetail.class).getResultList();
@@ -129,7 +124,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getPreOrders()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName LIKE 'Jam' AND p.quantityInStock = 0 " +
@@ -143,7 +138,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getBeardOils()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName " +
@@ -156,7 +151,7 @@ public class ProductController extends Controller
     @Transactional (readOnly = true)
     public Result getBeardBalms()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName " +
@@ -180,7 +175,7 @@ public class ProductController extends Controller
 
         search = "%" + search + "%";
 
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName LIKE 'Jam' " +
@@ -198,7 +193,7 @@ public class ProductController extends Controller
     @Transactional
     public Result getNaturals()
     {
-        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId) " +
+        List<ProductDetail> products = jpaApi.em().createQuery("SELECT NEW ProductDetail (p.productId, p.productName, p.price, p.ingredients, p.size, p.categoryId, p.seasonId, p.quantityInStock) " +
                 "FROM Product p " +
                 "JOIN Category c ON c.categoryId = p.categoryId " +
                 "WHERE c.categoryName LIKE 'Beard Balm' " +

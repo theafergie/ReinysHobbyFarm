@@ -3,15 +3,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
     <title>Admin Login</title>
 </head>
 <body>
-<form method="POST">
-    <h2>Enter Admin Pin</h2>
-    Pin <input type="password" name="password"><br>
 
-    @CSRF.formField
-    <input type="submit" value="Sign In">
-</form>
+<div class="container">
+    <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+
+
+                <form method="POST">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                            <center><h2>Enter Admin Pin</h2></center>
+
+                            <input type="password" class="form-control" name="pin" placeholder="Enter PIN">
+                            @CSRF.formField
+                            <input type="submit" value="LOG IN">
+
+                        </div>
+                    </div>
+                </form>
+
+
+        </div>
+    <div class="col-xs-4"></div>
+
+        </div>
+</div>
 </body>
 </html>

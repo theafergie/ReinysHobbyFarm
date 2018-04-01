@@ -13,30 +13,71 @@
 </head>
 <body>
 
-@for(cartItem <- cartItem){
-    @cartItem.getProductName()<br>
-    Qty: @cartItem.getQuantity()<br>
-    Price: @cartItem.getUnitPrice()<br>
+<div class="container-fluid">
+    <div class="row">
 
-<br>
-}
+        <div class="col-xs-3"></div>
+
+            <div class="col-xs-5">
+
+                <h2>YOUR CART</h2>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+
+                <dl>
+                    <tbody>
+                    <tr>
+                    @for(cartItem <- cartItem){
+
+                    <td><dt>@cartItem.getProductName()</dt></td>
+                    <td><dd>@cartItem.getQuantity()</dd></td>
+                    <td><dd>@cartItem.getUnitPrice() ea.</dd></td>
+
+                        </tr>
+                    }
 
 
+                    </tbody>
+                </dl>
+                </table>
 
-<form method="GET" action="@routes.HomeController.getHello()">
-    <input type="submit" class="btn-info" value="CONTINUE SHOPPING">
-</form>
+                <div class="row">
 
-<td>
-    <form method="GET" action="@routes.ShopController.getTotal()">
-        @CSRF.formField
-        <input type="submit" class="btn-info" value="CHECKOUT">
-    </form>
+                    <div class="col-xs-3">
+                        <form method="POST" action="emptycart">
+                            @CSRF.formField
+                            <input type="submit" class="btn btn-danger" value="EMPTY CART">
+                        </form>
 
-    <form method="POST" action="emptycart">
-        @CSRF.formField
-        <input type="submit" class="btn-info" value="EMPTY CART">
-    </form>
-</td>
+
+                    </div>
+
+                    <div class="col-xs-6"></div>
+                    <form method="GET" action="@routes.ShopController.getTotal()">
+                        @CSRF.formField
+                        <input type="submit" class="btn btn-success" value="CHECKOUT">
+                    </form>
+
+                </div>
+
+
+            </div>
+
+        <div>
+            <br>
+            <form method="GET" action="@routes.HomeController.getHello()">
+                <input type="submit" class="btn btn-primary" value="CONTINUE SHOPPING">
+            </form>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
