@@ -1,13 +1,16 @@
 package controllers;
 
 import Services.Email;
+import Services.SMS;
 import models.*;
+import play.api.Mode;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.product;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
@@ -151,9 +154,23 @@ public class ShopController extends Controller
 
             Email.sendEmail(date, cartItems);
 
+            //for text alerts (hard coded for now)
+            /*String phoneNumber = "+1 501 730 2952";
+            String message = "Thank You! Your order has been received!";
+            SMS.send(phoneNumber, message);*/
 
 
-            //for()
+            for(CartItem cartItem : cartItems)
+            {
+               String sql = "SELECT p FROM Product p " +
+                       "WHERE productId = :productId";
+
+               int productId = cartItem.getProductId();
+               Product products = jpaApi.em().createQuery(sql, Product.class).setParameter("productId", productId).getSingleResult();
+
+                products.setQuantityInStock(products.getQuantityInStock()-cartItem.getQuantity());
+                jpaApi.em().persist(products);
+            }
             cartItems = CartItem.fromJSON(json);
             session().remove("cart");
         }
@@ -190,28 +207,6 @@ public class ShopController extends Controller
 
     }
 
-   /* public BigDecimal getTotal(List<CartItem> cartItems)
-    {
-        String json = session().get("cart");
-        BigDecimal total = new BigDecimal("0.00");
-
-        if(json == null)
-        {
-            //
-        }
-        else
-        {
-            for(CartItem cartItem : cartItems)
-            {
-                BigDecimal quantity = new BigDecimal(cartItem.getQuantity());
-                total = total.add(cartItem.getUnitPrice().multiply(quantity));
-            }
-        }
-
-
-
-        return total;
-    }*/
 
    public Result getTotal()
    {

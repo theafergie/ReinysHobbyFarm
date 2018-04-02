@@ -14,23 +14,48 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-5">
                <h2> Review Order!</h2>
 
-                @for(cartItem <- cartItem){
-                @cartItem.getProductName()<br>
-                Qty: @cartItem.getQuantity()<br>
-                Price: @cartItem.getUnitPrice()<br>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
 
-                <br>
+                <dl>
+                    <tbody>
+                    <tr>
+
+                @for(cartItem <- cartItem){
+                        <td><dt>@cartItem.getProductName()</dt></td>
+                        <td><dt>Qty: @cartItem.getQuantity()</dt></td>
+                        <td><dt>Price: @cartItem.getUnitPrice()</dt></td>
+                    </tr>
+
                 }
-                Total: @total
-            <br>
+
+                    </tbody>
+
+                </dl>
+            </table>
+
+            <div class="col-xs-9"></div>
+
+            <table>
+                <tr>
+                    <td><dt>&nbsp; Total: @total</dt></td>
+                </tr>
+            </table>
 
             <form method="POST" action="@routes.ShopController.postPurchase()">
                 @CSRF.formField
 
-                <input type="submit" class="btn-info" value="COMPLETE ORDER">
+                <input type="submit" class="btn btn-success" value="COMPLETE ORDER">
             </form>
         </div>
     </div>

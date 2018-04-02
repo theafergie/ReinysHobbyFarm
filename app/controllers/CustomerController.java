@@ -1,6 +1,7 @@
 package controllers;
 
 import Services.Email;
+import Services.SMS;
 import models.CartItem;
 import models.Customer;
 import models.Password;
@@ -154,8 +155,22 @@ public class CustomerController extends Controller
         Email.sendEmail(date, cartItem);
 
         return ok(views.html.completeorder.render());
+    }
 
+    public Result getSendSMS()
+    {
+        return ok(views.html.sms.render());
+    }
 
+    public Result postSendText()
+    {
+        String phoneNumber= "";
+
+        String message = "";
+
+        SMS.send(phoneNumber, message);
+
+        return ok(views.html.completeorder.render());
     }
 
 }

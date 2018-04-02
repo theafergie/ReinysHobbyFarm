@@ -18,7 +18,47 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-2"></div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4>
+                    <div class="container">
+                        <a href="@routes.HomeController.getHello()">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </a>
+                        &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="@routes.ProductController.getJamminJellies()">Ashley's Jammin' Jellies</a>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <a href="@routes.ProductController.getNaturals()">RHF Naturals</a>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                        &nbsp; &nbsp;
+                        <a href="@routes.CustomerController.getLogIn()">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;
+
+                        <a href="@routes.ShopController.getCheckout()">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
+
+                        &nbsp;&nbsp;&nbsp;
+
+                        <a href="mailto:reinyshobbyfarm@@gmail.com">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </a>
+                    </div>
+                </h4>
+            </div>
+        </div>
+
+        <div class="col-xs-2"><a href="@routes.HomeController.getHello()"><img src="/assets/images/transparent-copy.png" alt="Rooster" height="175" /></a>
+        </div>
         <div class="col-xs-8">
              <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -46,7 +86,7 @@
                         <td><a href="product/@product.getProductId()"> @product.getProductName()</a></td>
                         <td>@product.getSize()</td>
 
-                        <td> @if(product.getQuantityInStock() == 0){
+                        <td>  @if(product.getQuantityInStock() == 0){
                             ☼
                             }else{
                             @product.getQuantityInStock()
@@ -96,13 +136,8 @@
     </div>
     <div class="col-xs-2">
 
-            <a href="@routes.HomeController.getHello()"><img src="/assets/images/transparent-copy.png" alt="Rooster" height="175" /></a>
 
-        <form method="POST" action="checkout">
-            @CSRF.formField
 
-            <p>&nbsp;</p><input type="submit" class="btn btn-primary" value="GO TO CART">
-        </form>
     </div>
 
 
