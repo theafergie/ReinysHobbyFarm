@@ -4,15 +4,15 @@
 Reiny's Hobby Farm is an ordering/preordering app designed for use at the farmers' market and events. The administrator
 page keeps up with inventory levels by category, top sellers and yearly sales.
 
-- Email/Text alerts when pre-ordered items are in stock
+- Email/Text order confirmation alerts
 - Easily browse by category
 - Request a special order
 
+Home Page
 
-## Running
+![alt text](https://github.com/theafergie/markdown-here/raw/master/src/common/images/1.png)
 
-
-## Controllers
+##
 
 There are several demonstration files available in this template.
 
