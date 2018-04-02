@@ -1,18 +1,16 @@
-[<img src="https://img.shields.io/travis/playframework/play-java-starter-example.svg"/>](https://travis-ci.org/playframework/play-java-starter-example)
 
-# play-java-starter-example
+## Reiny's Hobby Farm
 
-This is a starter application that shows how Play works.  Please see the documentation at https://www.playframework.com/documentation/latest/Home for more details.
+Reiny's Hobby Farm is an ordering/preordering app designed for use at the farmers' market and events. The administrator
+page keeps up with inventory levels by category, top sellers and yearly sales.
+
+- Email/Text alerts when pre-ordered items are in stock
+- Easily browse by category
+- Request a special order
+
 
 ## Running
 
-Run this using [sbt](http://www.scala-sbt.org/).  If you downloaded this project from http://www.playframework.com/download then you'll find a prepackaged version of sbt in the project directory:
-
-```
-sbt run
-```
-
-And then go to http://localhost:9000 to see the running web application.
 
 ## Controllers
 
