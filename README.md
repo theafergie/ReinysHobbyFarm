@@ -8,41 +8,26 @@ page keeps up with inventory levels by category, top sellers and yearly sales.
 - Easily browse by category
 - Request a special order
 
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/1.png)
 Home Page
 
-![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/1.png)
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/2.png)
+Add Customer or Sign In as Existing Customer
 
-##
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/4.png)
+Quick Order Form
 
-There are several demonstration files available in this template.
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/6.png)
+Request Form
 
-- HomeController.java:
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/10.png)
+Cart
 
-  Shows how to handle simple HTTP requests.
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/9.png)
+Admin Page
 
-- AsyncController.java:
 
-  Shows how to do asynchronous programming when handling a request.
 
-- CountController.java:
-
-  Shows how to inject a component into a controller and use the component when
-  handling requests.
-
-## Components
-
-- Module.java:
-
-  Shows how to use Guice to bind all the components needed by your application.
-
-- Counter.java:
-
-  An example of a component that contains state, in this case a simple counter.
-
-- ApplicationTimer.java:
-
-  An example of a component that starts when the application starts and stops
-  when the application stops.
 
 ## Filters
 
