@@ -10,7 +10,7 @@ page keeps up with inventory levels by category, top sellers and yearly sales.
 
 Home Page
 
-![alt text](https://github.com/theafergie/markdown-here/raw/master/src/common/images/1.png)
+![alt text](https://raw.githubusercontent.com/theafergie/reinyshobbyfarm/public/images/1.png)
 
 ##
 
