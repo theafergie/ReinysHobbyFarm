@@ -8,29 +8,37 @@ page keeps up with inventory levels by category, top sellers and yearly sales.
 - Easily browse by category
 - Request a special order
 
-![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/1.png)
+
 Home Page
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/1.png)
 
-![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/2.png)
 Add Customer or Sign In as Existing Customer
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/2.png)
 
-![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/4.png)
 Quick Order Form
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/4.png)
 
-![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/6.png)
 Request Form
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/6.png)
 
-![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/10.png)
 Cart
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/10.png)
 
-![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/9.png)
 Admin Page
+![alt text](https://github.com/theafergie/reinyshobbyfarm/blob/master/public/images/9.png)
 
 
 
 
-## Filters
 
-- ExampleFilter.java
+## Build Summary
 
-  A simple filter that adds a header to every response.
+- Java
+- MariaDB/HeidiSQL
+- Play Framework
+- Amazon Web Email Services
+- Amazon Web SMS Services
+- Google Maps API
+- HTML
+- Scala
+- Twitter Bootstrap
