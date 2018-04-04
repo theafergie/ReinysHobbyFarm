@@ -84,7 +84,7 @@
                         <td><a href="product/@product.getProductId()"> @product.getProductName()</a></td>
                         <td>@product.getSize()</td>
 
-                        <td> @if(product.getQuantityInStock() == 0){
+                        <td> @if(product.getQuantityInStock() <= 0){
                                 ☼
                         }else{
                             @product.getQuantityInStock()

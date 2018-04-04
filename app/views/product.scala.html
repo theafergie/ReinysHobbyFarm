@@ -93,7 +93,7 @@
                 </div>
 
                 <div id="qty" class="tab-pane fade">
-                    <p>@if(product.getQuantityInStock() == 0){
+                    <p>@if(product.getQuantityInStock() <= 0){
                     PREORDER ONLY
                     }else{
                     Instock Quantity: @product.getQuantityInStock()
